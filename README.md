@@ -29,8 +29,11 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 ## Commands
 
-Create project
- ng new <project name>
+### Create project
+ng new <project name>
 
-Install PrimeNG packages (--save to add on pckage.json)
-  npm install primeng --save
+### Install PrimeNG packages (--save to add on pckage.json)
+npm install primeng --save
+
+## Install fontawesome (primeNG dependecy)
+npm install font-awesome --save
