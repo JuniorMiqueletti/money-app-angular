@@ -37,6 +37,12 @@
             <span [style.color]=" rel.type === 'RECIPE' ? 'red' : 'blue' ">{{rel.value}}</span>
           </ng-template>
         </p-column>
+        <p-column styleClass="col-actions">
+              <ng-template pTemplate="body">
+                <button pButton icon="fa-pencil"></button>
+                <button pButton icon="fa-trash"></button>
+              </ng-template>
+        </p-column>
       </p-dataTable>
 
     </div>
