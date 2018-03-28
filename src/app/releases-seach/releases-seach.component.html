@@ -1,0 +1,55 @@
+<div class="container">
+
+  <div class="ui-g">
+    <div class="ui-g-12">
+      <h1>Financial releases</h1>
+    </div>
+
+    <div class="ui-g-12 ui-fluid">
+      <label>Description</label>
+      <input pInputText type="text">
+    </div>
+
+    <div class="ui-g-12">
+      <label style="display: block;">Due</label>
+      <input pInputText type="text" style="width: 95px">
+
+      <label>until</label>
+      <input pInputText type="text" style="width: 95px">
+    </div>
+
+    <div class="ui-g-12">
+      <button pButton type="submit" label="Search"></button>
+    </div>
+
+  </div>
+
+  <div class="ui-g">
+    <div class="ui-g-12">
+
+      <p-dataTable [value]="releases" [paginator]="true" [rows]="5" [responsive]="true">
+        <p-column field="person" header="Person"></p-column>
+        <p-column field="description" header="Description"></p-column>
+        <p-column field="dueDate" header="Due date" styleClass="col-date"></p-column>
+        <p-column field="payDate" header="Pay date"styleClass="col-date"></p-column>
+        <p-column field="value" header="Value" styleClass="col-value">
+          <ng-template let-rel="rowData" pTemplate="body">
+            <span [style.color]=" rel.type === 'RECIPE' ? 'red' : 'blue' ">{{rel.value}}</span>
+          </ng-template>
+        </p-column>
+        <p-column styleClass="col-actions">
+              <ng-template pTemplate="body">
+                <button pButton icon="fa-pencil" pTooltip="Edit" tooltipPosition="top"></button>
+                <button pButton icon="fa-trash" pTooltip="Exclude" tooltipPosition="top"></button>
+              </ng-template>
+        </p-column>
+      </p-dataTable>
+
+    </div>
+  </div>
+
+  <div class="ui-g-12">
+      <button pButton label="New Release"></button>
+  </div>
+
+</div>
