@@ -8,11 +8,13 @@ import { ButtonModule } from 'primeng/button';
 import { DataTableModule } from 'primeng/datatable';
 import { TooltipModule } from 'primeng/tooltip';
 import { ReleasesSeachComponent } from './releases-seach/releases-seach.component';
+import { NavbarComponent } from './navbar/navbar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ReleasesSeachComponent
+    ReleasesSeachComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
