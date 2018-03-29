@@ -2,8 +2,16 @@
   <div class="container">
     <div class="ui-g">
       <div class="ui-g-12">
-        <a href="javascript:;" class="navbar-togle"><i class="fa fa-bars"></i></a>
+        <a href="javascript:;" class="navbar-togle" (click)="showingMenu = !showingMenu"><i class="fa fa-bars"></i></a>
       </div>
     </div>
   </div>
+
+  <ul class="navbar-menu" [hidden]="!showingMenu">
+    <li class="navbar-user">Junior Miqueletti</li>
+    <li class="navbar-menuitem"><a href="#">Releases</a></li>
+    <li class="navbar-menuitem"><a href="#">People</a></li>
+    <li class="navbar-menuitem"><a href="#">Logout</a></li>
+  </ul>
+
 </nav>
