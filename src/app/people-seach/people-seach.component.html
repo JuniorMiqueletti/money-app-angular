@@ -1,0 +1,42 @@
+<div class="container">
+
+  <div class="ui-g">
+    <div class="ui-g-12">
+      <h1>People</h1>
+    </div>
+
+    <div class="ui-g-12 ui-fluid">
+      <label>Name</label>
+      <input pInputText type="text">
+    </div>
+
+    <div class="ui-g-12">
+      <button pButton type="submit" label="Search"></button>
+    </div>
+
+  </div>
+
+  <div class="ui-g">
+    <div class="ui-g-12">
+
+        <p-dataTable [value]="people" [paginator]="true" [rows]="5" [responsive]="true">
+            <p-column field="name" header="Name"></p-column>
+            <p-column field="city" header="City"></p-column>
+            <p-column field="state" header="State" styleClass="col-date"></p-column>
+            <p-column field="active" header="Status"styleClass="col-date"></p-column>
+            <p-column styleClass="col-actions">
+                  <ng-template pTemplate="body">
+                    <button pButton icon="fa-pencil" pTooltip="Edit" tooltipPosition="top"></button>
+                    <button pButton icon="fa-trash" pTooltip="Exclude" tooltipPosition="top"></button>
+                  </ng-template>
+            </p-column>
+          </p-dataTable>
+
+    </div>
+  </div>
+
+  <div class="ui-g-12">
+      <button pButton label="New Person"></button>
+  </div>
+
+</div>

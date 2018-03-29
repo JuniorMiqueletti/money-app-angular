@@ -9,12 +9,14 @@ import { DataTableModule } from 'primeng/datatable';
 import { TooltipModule } from 'primeng/tooltip';
 import { ReleasesSeachComponent } from './releases-seach/releases-seach.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { PeopleSeachComponent } from './people-seach/people-seach.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ReleasesSeachComponent,
-    NavbarComponent
+    NavbarComponent,
+    PeopleSeachComponent
   ],
   imports: [
     BrowserModule,
