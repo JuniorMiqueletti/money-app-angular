@@ -8,19 +8,19 @@ import { Component, OnInit } from '@angular/core';
 export class ReleasesSeachComponent {
 
   releases = [
-    { type: 'EXPENSIVE', description: 'Compra de pão', dueDate: '30/06/2017',
+    { type: 'EXPENSIVE', description: 'Compra de pão', dueDate: new Date(2017, 6, 30),
       payDate: null, value: 4.55, person: 'Padaria do José' },
-    { type: 'RECIPE', description: 'Venda de software', dueDate: '10/06/2017',
-      payDate: '09/06/2017', value: 80000, person: 'Atacado Brasil' },
-    { type: 'EXPENSIVE', description: 'Impostos', dueDate: '20/07/2017',
+    { type: 'RECIPE', description: 'Venda de software', dueDate: new Date(2017, 6, 10),
+      payDate: new Date(2017, 6, 9), value: 80000, person: 'Atacado Brasil' },
+    { type: 'EXPENSIVE', description: 'Impostos', dueDate: new Date(2017, 7, 20),
       payDate: null, value: 14312, person: 'Ministério da Fazenda' },
-    { type: 'EXPENSIVE', description: 'Mensalidade de escola', dueDate: '05/06/2017',
-      payDate: '30/05/2017', value: 800, person: 'Escola Abelha Rainha' },
-    { type: 'RECIPE', description: 'Venda de carro', dueDate: '18/08/2017',
+    { type: 'EXPENSIVE', description: 'Mensalidade de escola', dueDate: new Date(2017, 6, 5),
+      payDate: new Date(2017, 5, 30), value: 800, person: 'Escola Abelha Rainha' },
+    { type: 'RECIPE', description: 'Venda de carro', dueDate: new Date(2017, 8, 18),
       payDate: null, value: 55000, person: 'Sebastião Souza' },
-    { type: 'EXPENSIVE', description: 'Aluguel', dueDate: '10/07/2017',
-      payDate: '09/07/2017', value: 1750, person: 'Casa Nova Imóveis' },
-    { type: 'EXPENSIVE', description: 'Mensalidade musculação', dueDate: '13/07/2017',
+    { type: 'EXPENSIVE', description: 'Aluguel', dueDate: new Date(2017, 7, 10),
+      payDate: new Date(2017, 7, 9), value: 1750, person: 'Casa Nova Imóveis' },
+    { type: 'EXPENSIVE', description: 'Mensalidade musculação', dueDate: new Date(2017, 7, 13),
       payDate: null, value: 180, person: 'Academia Top' }
   ];
 
