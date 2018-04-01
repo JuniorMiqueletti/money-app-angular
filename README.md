@@ -38,5 +38,8 @@ npm install primeng --save
 ## Install fontawesome (primeNG dependecy)
 npm install font-awesome --save
 
+## Adding currency mask
+npm install ng2-currency-mask --save
+
 ## Create new component on AngularCLI (--spec=false to do not create test file)
 ng g c <componentName>

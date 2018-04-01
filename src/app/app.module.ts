@@ -18,6 +18,8 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { PeopleSeachComponent } from './people-seach/people-seach.component';
 import { ReleaseRegisterComponent } from './release-register/release-register.component';
 
+import { CurrencyMaskModule } from 'ng2-currency-mask';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,7 +38,8 @@ import { ReleaseRegisterComponent } from './release-register/release-register.co
     InputTextareaModule,
     CalendarModule,
     SelectButtonModule,
-    DropdownModule
+    DropdownModule,
+    CurrencyMaskModule
   ],
   providers: [],
   bootstrap: [AppComponent]
