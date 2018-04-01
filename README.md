@@ -38,5 +38,5 @@ npm install primeng --save
 ## Install fontawesome (primeNG dependecy)
 npm install font-awesome --save
 
-## Create new component on AngularCLI
+## Create new component on AngularCLI (--spec=false to do not create test file)
 ng g c <componentName>

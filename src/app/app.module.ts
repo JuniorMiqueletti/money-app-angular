@@ -4,26 +4,32 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 
 import { InputTextModule } from 'primeng/inputtext';
+import { InputTextareaModule } from 'primeng/inputtextarea';
 import { ButtonModule } from 'primeng/button';
 import { DataTableModule } from 'primeng/datatable';
 import { TooltipModule } from 'primeng/tooltip';
+
+
 import { ReleasesSeachComponent } from './releases-seach/releases-seach.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { PeopleSeachComponent } from './people-seach/people-seach.component';
+import { ReleaseRegisterComponent } from './release-register/release-register.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ReleasesSeachComponent,
     NavbarComponent,
-    PeopleSeachComponent
+    PeopleSeachComponent,
+    ReleaseRegisterComponent
   ],
   imports: [
     BrowserModule,
     InputTextModule,
     ButtonModule,
     DataTableModule,
-    TooltipModule
+    TooltipModule,
+    InputTextareaModule
   ],
   providers: [],
   bootstrap: [AppComponent]
