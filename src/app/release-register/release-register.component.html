@@ -28,11 +28,18 @@
       </div>
       <div class="ui-g-12 ui-md-6 ui-fluid">
         <label>Category</label>
-        <input pInputText type="text">
+        <p-dropdown [options]="categories"
+          [autoWidth]="false"
+          placeholder="Select">
+        </p-dropdown>
       </div>
       <div class="ui-g-12 ui-md-6 ui-fluid">
         <label>Person</label>
-        <input pInputText type="text">
+        <p-dropdown [options]="people"
+          [autoWidth]="false"
+          placeholder="Select"
+          filter="true">
+        </p-dropdown>
       </div>
       <div class="ui-g-12 ui-fluid">
         <label>Obersavation</label>

@@ -11,6 +11,7 @@ import { DataTableModule } from 'primeng/datatable';
 import { TooltipModule } from 'primeng/tooltip';
 import { CalendarModule } from 'primeng/calendar';
 import { SelectButtonModule } from 'primeng/selectbutton';
+import { DropdownModule } from 'primeng/dropdown';
 
 import { ReleasesSeachComponent } from './releases-seach/releases-seach.component';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -34,7 +35,8 @@ import { ReleaseRegisterComponent } from './release-register/release-register.co
     TooltipModule,
     InputTextareaModule,
     CalendarModule,
-    SelectButtonModule
+    SelectButtonModule,
+    DropdownModule
   ],
   providers: [],
   bootstrap: [AppComponent]
