@@ -1,3 +1,4 @@
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -8,7 +9,7 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
 import { ButtonModule } from 'primeng/button';
 import { DataTableModule } from 'primeng/datatable';
 import { TooltipModule } from 'primeng/tooltip';
-
+import { CalendarModule } from 'primeng/calendar';
 
 import { ReleasesSeachComponent } from './releases-seach/releases-seach.component';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -25,11 +26,13 @@ import { ReleaseRegisterComponent } from './release-register/release-register.co
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     InputTextModule,
     ButtonModule,
     DataTableModule,
     TooltipModule,
-    InputTextareaModule
+    InputTextareaModule,
+    CalendarModule
   ],
   providers: [],
   bootstrap: [AppComponent]
