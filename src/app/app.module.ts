@@ -19,6 +19,7 @@ import { PeopleSeachComponent } from './people-seach/people-seach.component';
 import { ReleaseRegisterComponent } from './release-register/release-register.component';
 
 import { CurrencyMaskModule } from 'ng2-currency-mask';
+import { PersonRegisterComponent } from './person-register/person-register.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { CurrencyMaskModule } from 'ng2-currency-mask';
     ReleasesSeachComponent,
     NavbarComponent,
     PeopleSeachComponent,
-    ReleaseRegisterComponent
+    ReleaseRegisterComponent,
+    PersonRegisterComponent
   ],
   imports: [
     BrowserModule,
