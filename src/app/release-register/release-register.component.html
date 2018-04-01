@@ -6,12 +6,16 @@
         <h1>New Release</h1>
       </div>
 
+      <div class="ui-g-12">
+        <p-selectButton [options]="types" #type></p-selectButton>
+      </div>
+
       <div class="ui-g-6 ui-md-3 ui-fluid">
         <label>Due</label>
         <p-calendar dateFormat="dd/mm/yy" showIcon="true"></p-calendar>
       </div>
       <div class="ui-g-6 ui-md-3 ui-fluid">
-        <label>Recipe</label>
+        <label>{{ type.value === 'EXPENSE' ? 'Payment' : 'Receivement' }}</label>
         <p-calendar dateFormat="dd/mm/yy" showIcon="true"></p-calendar>
       </div>
       <div class="ui-g-12 ui-md-9 ui-fluid">
