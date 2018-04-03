@@ -43,3 +43,8 @@ npm install ng2-currency-mask --save
 
 ## Create new component on AngularCLI (--spec=false to do not create test file)
 ng g c <componentName>
+
+### Options
+* --spec=false > to do not create test file
+* --inline-template > to do not create separate html file
+* --inline-style > to do not create separate style file
