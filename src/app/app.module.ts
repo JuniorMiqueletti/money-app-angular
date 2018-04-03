@@ -12,6 +12,7 @@ import { TooltipModule } from 'primeng/tooltip';
 import { CalendarModule } from 'primeng/calendar';
 import { SelectButtonModule } from 'primeng/selectbutton';
 import { DropdownModule } from 'primeng/dropdown';
+import { InputMaskModule } from 'primeng/inputmask';
 
 import { ReleasesSeachComponent } from './releases-seach/releases-seach.component';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -41,6 +42,7 @@ import { PersonRegisterComponent } from './person-register/person-register.compo
     CalendarModule,
     SelectButtonModule,
     DropdownModule,
+    InputMaskModule,
     CurrencyMaskModule
   ],
   providers: [],
