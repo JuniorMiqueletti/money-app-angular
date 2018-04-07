@@ -37,6 +37,7 @@ import { MessageComponent } from './message/message.component';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    FormsModule,
     InputTextModule,
     ButtonModule,
     DataTableModule,
@@ -46,8 +47,7 @@ import { MessageComponent } from './message/message.component';
     SelectButtonModule,
     DropdownModule,
     InputMaskModule,
-    CurrencyMaskModule,
-    FormsModule
+    CurrencyMaskModule
   ],
   providers: [],
   bootstrap: [AppComponent]

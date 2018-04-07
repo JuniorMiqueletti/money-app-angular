@@ -5,11 +5,5 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './person-register.component.html',
   styleUrls: ['./person-register.component.css']
 })
-export class PersonRegisterComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit() {
-  }
-
+export class PersonRegisterComponent {
 }

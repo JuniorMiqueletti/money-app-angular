@@ -1,5 +1,5 @@
 <div class="container">
-  <form autocomplete="off">
+  <form #fNgForm="ngForm" autocomplete="off">
     <div class="ui-g">
 
       <div class="ui-g-12">
@@ -12,8 +12,14 @@
 
       <div class="ui-g-6 ui-md-3 ui-fluid">
         <label>Due</label>
-        <p-calendar dateFormat="dd/mm/yy" showIcon="true"></p-calendar>
+        <p-calendar name ="dueDate" dateFormat="dd/mm/yy"
+        showIcon="true"
+        ngModel #dueDate="ngModel" required></p-calendar>
+
+        <app-message [control]="dueDate" error="required"
+        text="Inform the Due"></app-message>
       </div>
+
       <div class="ui-g-6 ui-md-3 ui-fluid">
         <label>{{ type.value === 'EXPENSE' ? 'Payment' : 'Receivement' }}</label>
         <p-calendar dateFormat="dd/mm/yy" showIcon="true"></p-calendar>
@@ -39,24 +45,35 @@
           placeholder="0,00"
           currencyMask
           [options]="{ prefix: '', thousands: '.', decimal: ',', allowNegative: false }"
-          ngModel>
+          ngModel #value="ngModel" required>
+
+        <app-message [control]="value" error="required"
+          text="Inform a value"></app-message>
       </div>
 
       <div class="ui-g-12 ui-md-6 ui-fluid">
         <label>Category</label>
-        <p-dropdown [options]="categories"
+        <p-dropdown name="category" [options]="categories"
           [autoWidth]="false"
-          placeholder="Select">
+          placeholder="Select"
+          ngModel #category="ngModel" required>
         </p-dropdown>
+
+        <app-message [control]="category" error="required"
+          text="Inform a category"></app-message>
       </div>
 
       <div class="ui-g-12 ui-md-6 ui-fluid">
         <label>Person</label>
-        <p-dropdown [options]="people"
+        <p-dropdown name="person" [options]="people"
           [autoWidth]="false"
           placeholder="Select"
-          filter="true">
+          filter="true"
+          ngModel #person="ngModel" required>
         </p-dropdown>
+
+        <app-message [control]="person" error="required"
+          text="Inform a person"></app-message>
       </div>
 
       <div class="ui-g-12 ui-fluid">
@@ -65,7 +82,7 @@
       </div>
 
       <div class="ui-g-12">
-        <button pButton type="submit" label="Save"></button>
+        <button pButton type="submit" label="Save" [disabled]="fNgForm.invalid"></button>
         <button pButton type="submit" label="New" class="ui-button-info"></button>
         <a href="javascript:;">Return to search</a>
       </div>
