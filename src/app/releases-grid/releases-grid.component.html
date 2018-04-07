@@ -1,0 +1,27 @@
+<p-dataTable [value]="releases" [paginator]="true" [rows]="5" [responsive]="true">
+  <p-column field="person" header="Person"></p-column>
+  <p-column field="description" header="Description"></p-column>
+  <p-column field="dueDate" header="Due date" styleClass="col-date">
+    <ng-template let-dat="rowData" pTemplate="body">
+        {{dat.dueDate | date:'dd/MM/yyyy'}}
+    </ng-template>
+  </p-column>
+  <p-column field="payDate" header="Pay date"styleClass="col-date">
+    <ng-template let-dat="rowData" pTemplate="body">
+      {{dat.payDate | date:'dd/MM/yyyy'}}
+    </ng-template>
+  </p-column>
+  <p-column field="value" header="Value" styleClass="col-value">
+    <ng-template let-rel="rowData" pTemplate="body">
+      <span [style.color]=" rel.type === 'RECIPE' ? 'red' : 'blue' ">
+        {{rel.value | number:'1.2-2'}}
+      </span>
+    </ng-template>
+  </p-column>
+  <p-column styleClass="col-actions">
+        <ng-template pTemplate="body">
+          <button pButton icon="fa-pencil" pTooltip="Edit" tooltipPosition="top"></button>
+          <button pButton icon="fa-trash" pTooltip="Exclude" tooltipPosition="top"></button>
+        </ng-template>
+  </p-column>
+</p-dataTable>

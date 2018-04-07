@@ -23,6 +23,8 @@ import { ReleaseRegisterComponent } from './release-register/release-register.co
 import { CurrencyMaskModule } from 'ng2-currency-mask';
 import { PersonRegisterComponent } from './person-register/person-register.component';
 import { MessageComponent } from './message/message.component';
+import { PeopleGridComponent } from './people-grid/people-grid.component';
+import { ReleasesGridComponent } from './releases-grid/releases-grid.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +34,9 @@ import { MessageComponent } from './message/message.component';
     PeopleSeachComponent,
     ReleaseRegisterComponent,
     PersonRegisterComponent,
-    MessageComponent
+    MessageComponent,
+    PeopleGridComponent,
+    ReleasesGridComponent
   ],
   imports: [
     BrowserModule,
