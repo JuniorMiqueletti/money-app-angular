@@ -6,6 +6,7 @@ This project was generated with [Angular CLI]
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
+
 ## Build
 
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
@@ -18,7 +19,7 @@ Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.
 
 Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
 
-## Code scaffolding AngularCLI
+## Angular CLI Code scaffolding ( command line interface for Angular )
 
 Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
@@ -43,12 +44,22 @@ Run `ng generate component component-name` to generate a new component. You can 
 - `ng generate component <componentName>`
 - `ng generate component <componentName> <options>`
 
-
-> ####options
+> **OPTIONS**
 sample: ` ng g c <componentName> <options>`
 * `--spec=false` to do not create test file
 * `--inline-template` to do not create separate html file
 * `--inline-style` to do not create separate style file
+
+> Exporting components of module
+```typescript
+@NgModule({
+  imports: [
+    CommonModule
+  ],
+  declarations: [ComponentToExport],
+  exports: [ComponentToExport]
+})
+```
 
 ### Create module
 `ng g m <module_name>`
