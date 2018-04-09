@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-people-seach',
-  templateUrl: './people-seach.component.html',
-  styleUrls: ['./people-seach.component.css']
+  selector: 'app-people-search',
+  templateUrl: './people-search.component.html',
+  styleUrls: ['./people-search.component.css']
 })
-export class PeopleSeachComponent {
+export class PeopleSearchComponent {
 
   people = [
     { name: 'Manoel Pinheiro', city: 'Uberlândia', state: 'MG', active: true },

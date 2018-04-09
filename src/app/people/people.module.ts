@@ -6,9 +6,9 @@ import { CommonModule } from '@angular/common';
 import { ButtonModule } from 'primeng/button';
 import { DataTableModule } from 'primeng/datatable';
 import { TooltipModule } from 'primeng/tooltip';
-import { PersonRegisterComponent } from './person-register/person-register.component';
+import { PeopleRegisterComponent } from './people-register/people-register.component';
 import { PeopleGridComponent } from './people-grid/people-grid.component';
-import { PeopleSeachComponent } from './people-seach/people-seach.component';
+import { PeopleSearchComponent } from './people-search/people-search.component';
 import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
@@ -25,13 +25,13 @@ import { SharedModule } from '../shared/shared.module';
     SharedModule
   ],
   declarations: [
-    PersonRegisterComponent,
-    PeopleSeachComponent,
+    PeopleRegisterComponent,
+    PeopleSearchComponent,
     PeopleGridComponent
   ],
   exports: [
-    PersonRegisterComponent,
-    PeopleSeachComponent
+    PeopleRegisterComponent,
+    PeopleSearchComponent
   ]
 })
 export class PeopleModule { }

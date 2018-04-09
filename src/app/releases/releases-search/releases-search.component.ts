@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-releases-seach',
-  templateUrl: './releases-seach.component.html',
-  styleUrls: ['./releases-seach.component.css']
+  selector: 'app-releases-search',
+  templateUrl: './releases-search.component.html',
+  styleUrls: ['./releases-search.component.css']
 })
-export class ReleasesSeachComponent {
+export class ReleasesSearchComponent {
 
   releases = [
     { type: 'EXPENSE', description: 'Compra de pão', dueDate: new Date(2017, 6, 30),

@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 
 import { ReleasesGridComponent } from './releases-grid/releases-grid.component';
 import { ReleaseRegisterComponent } from './release-register/release-register.component';
-import { ReleasesSeachComponent } from './releases-seach/releases-seach.component';
+import { ReleasesSearchComponent } from './releases-search/releases-search.component';
 
 import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
@@ -38,12 +38,12 @@ import { SharedModule } from '../shared/shared.module';
   ],
   declarations: [
     ReleaseRegisterComponent,
-    ReleasesSeachComponent,
+    ReleasesSearchComponent,
     ReleasesGridComponent
     ],
   exports: [
     ReleaseRegisterComponent,
-    ReleasesSeachComponent
+    ReleasesSearchComponent
   ]
 })
 export class ReleasesModule { }
