@@ -50,7 +50,17 @@ sample: ` ng g c <componentName> <options>`
 * `--inline-template` to do not create separate html file
 * `--inline-style` to do not create separate style file
 
-> Exporting components of module
+### Create module
+`ng g m <module_name>`
+`ng g module <module_name>`
+`ng generate module <module_name>`
+
+## Angular structure guidelines
+
+### Module components Export - exports: []
+
+Used to expose component to reuse in other modules
+
 ```typescript
 @NgModule({
   imports: [
@@ -61,7 +71,32 @@ sample: ` ng g c <componentName> <options>`
 })
 ```
 
-### Create module
-`ng g m <module_name>`
-`ng g module <module_name>`
-`ng generate module <module_name>`
+### Providers - providers: []
+
+Used to define classes to DI
+
+```typescript
+@NgModule({
+  declarations: [
+    AppComponent
+  ],
+  imports: [],
+  providers: [
+    AppService
+  ],
+  bootstrap: [
+    AppComponent
+  ]
+})
+export class AppModule { }
+```
+
+or
+
+```typescript
+...
+  providers: [
+    { provide: AppService, useClass: AppExtendService }
+   ]
+...
+```
