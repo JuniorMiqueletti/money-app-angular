@@ -1,3 +1,4 @@
+import { ReleaseService } from './releases/release.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -8,6 +9,7 @@ import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { ReleasesModule } from './releases/releases.module';
 import { PeopleModule } from './people/people.module';
+import { HttpModule } from '@angular/http';
 
 @NgModule({
   declarations: [
@@ -16,12 +18,15 @@ import { PeopleModule } from './people/people.module';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    HttpModule,
 
     CoreModule,
     ReleasesModule,
     PeopleModule
   ],
-  providers: [],
+  providers: [
+    ReleaseService
+  ],
   bootstrap: [
     AppComponent
   ]
