@@ -1,9 +1,12 @@
 import { Injectable, Component } from '@angular/core';
 import { Http, Headers, URLSearchParams } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
+import * as moment from 'moment';
 
 export interface ReleaseFilter {
   description: string;
+  dueDateFrom: Date;
+  dueDateUntil: Date;
 }
 
 @Injectable()
@@ -22,6 +25,14 @@ export class ReleaseService {
 
     if (filter.description) {
       params.set('description', filter.description);
+    }
+    if (filter.dueDateFrom) {
+      params.set('dueDateFrom',
+        moment(filter.dueDateFrom).format('YYYY-MM-DD'));
+    }
+    if (filter.dueDateUntil) {
+      params.set('dueDateUntil',
+        moment(filter.dueDateUntil).format('YYYY-MM-DD'));
     }
 
     return this.http.get(`${this.releasesUrl}?summary`,

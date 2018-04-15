@@ -36,6 +36,9 @@ Run `ng generate component component-name` to generate a new component. You can 
 ### Adding currency mask
 `npm install ng2-currency-mask --save`
 
+### Adding moment.js to date parse
+`npm install moment --save`
+
 ### Create component
 `ng g c <componentName>`
 `ng g c <moduleName>/<componentName>` selecting module

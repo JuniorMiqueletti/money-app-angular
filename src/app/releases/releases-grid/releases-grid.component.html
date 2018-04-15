@@ -1,4 +1,5 @@
-<p-dataTable [value]="releases" [paginator]="true" [rows]="5" [responsive]="true">
+<p-dataTable [value]="releases" [paginator]="true" [rows]="5" [responsive]="true"
+  emptyMessage="No register found.">
   <p-column field="person" header="Person"></p-column>
   <p-column field="description" header="Description"></p-column>
   <p-column field="dueDate" header="Due date" styleClass="col-date">

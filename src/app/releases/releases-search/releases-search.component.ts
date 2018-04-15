@@ -1,4 +1,4 @@
-import { ReleaseService } from './../release.service';
+import { ReleaseService, ReleaseFilter } from './../release.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -9,6 +9,9 @@ import { Component, OnInit } from '@angular/core';
 export class ReleasesSearchComponent implements OnInit {
 
   description: string;
+  dueDateFrom: Date;
+  dueDateUntil: Date;
+
   releases = [];
 
   constructor(private releaseService: ReleaseService) {}
@@ -18,7 +21,16 @@ export class ReleasesSearchComponent implements OnInit {
   }
 
   search() {
-    this.releaseService.search({ description: this.description })
+
+    const filter: ReleaseFilter = {
+      description: this.description,
+      dueDateFrom: this.dueDateFrom,
+      dueDateUntil: this.dueDateUntil
+    };
+
+    console.log(filter);
+
+    this.releaseService.search(filter)
       .then( releases => this.releases = releases );
   }
 

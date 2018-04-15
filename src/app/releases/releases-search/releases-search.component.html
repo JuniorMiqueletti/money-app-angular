@@ -16,10 +16,15 @@
 
       <div class="ui-g-12">
         <label style="display: block;">Due</label>
-        <input pInputText type="text" style="width: 95px">
+        <p-calendar dateFormat="dd/mm/yy" [inputStyle]="{ width: '95px' }"
+          name="dueDateFrom"
+          [(ngModel)]="dueDateFrom"></p-calendar>
 
         <label>until</label>
-        <input pInputText type="text" style="width: 95px">
+        <p-calendar dateFormat="dd/mm/yy" [inputStyle]="{ width: '95px' }"
+          name="dueDateUntil"
+          [(ngModel)]="dueDateUntil"></p-calendar>
+
       </div>
 
       <div class="ui-g-12">
