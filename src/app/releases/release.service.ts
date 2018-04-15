@@ -1,6 +1,10 @@
 import { Injectable, Component } from '@angular/core';
-import { Http, Headers } from '@angular/http';
+import { Http, Headers, URLSearchParams } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
+
+export interface ReleaseFilter {
+  description: string;
+}
 
 @Injectable()
 export class ReleaseService {
@@ -9,12 +13,19 @@ export class ReleaseService {
 
   constructor(private http: Http) { }
 
-  search(): Promise<any> {
+  search(filter: ReleaseFilter): Promise<any> {
+
+    const params = new URLSearchParams();
 
     const headers = new Headers();
     headers.append('Authorization', 'Basic YWRtaW5AZ21haWwuY29tOmFkbWlu');
 
-    return this.http.get(`${this.releasesUrl}?summary`, { headers })
+    if (filter.description) {
+      params.set('description', filter.description);
+    }
+
+    return this.http.get(`${this.releasesUrl}?summary`,
+      { headers, search: params })
       .toPromise()
       .then( response => response.json().content );
   }

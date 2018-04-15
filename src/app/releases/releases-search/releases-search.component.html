@@ -1,26 +1,32 @@
 <div class="container">
 
   <div class="ui-g">
-    <div class="ui-g-12">
-      <h1>Financial releases</h1>
-    </div>
 
-    <div class="ui-g-12 ui-fluid">
-      <label>Description</label>
-      <input pInputText type="text">
-    </div>
+    <form autocomplete="off" (ngSubmit)="search()">
 
-    <div class="ui-g-12">
-      <label style="display: block;">Due</label>
-      <input pInputText type="text" style="width: 95px">
+      <div class="ui-g-12">
+        <h1>Financial releases</h1>
+      </div>
 
-      <label>until</label>
-      <input pInputText type="text" style="width: 95px">
-    </div>
+      <div class="ui-g-12 ui-fluid">
+        <label>Description</label>
+        <input pInputText type="text" name="description"
+        [(ngModel)]="description">
+      </div>
 
-    <div class="ui-g-12">
-      <button pButton type="submit" label="Search"></button>
-    </div>
+      <div class="ui-g-12">
+        <label style="display: block;">Due</label>
+        <input pInputText type="text" style="width: 95px">
+
+        <label>until</label>
+        <input pInputText type="text" style="width: 95px">
+      </div>
+
+      <div class="ui-g-12">
+        <button pButton type="submit" label="Search"></button>
+      </div>
+
+  </form>
 
   </div>
 

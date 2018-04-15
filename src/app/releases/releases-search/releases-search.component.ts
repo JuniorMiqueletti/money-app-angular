@@ -6,8 +6,9 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './releases-search.component.html',
   styleUrls: ['./releases-search.component.css']
 })
-export class ReleasesSearchComponent implements OnInit{
+export class ReleasesSearchComponent implements OnInit {
 
+  description: string;
   releases = [];
 
   constructor(private releaseService: ReleaseService) {}
@@ -17,7 +18,7 @@ export class ReleasesSearchComponent implements OnInit{
   }
 
   search() {
-    this.releaseService.search()
+    this.releaseService.search({ description: this.description })
       .then( releases => this.releases = releases );
   }
 
