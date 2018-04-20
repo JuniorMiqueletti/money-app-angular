@@ -3,10 +3,12 @@ import { Http, Headers, URLSearchParams } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 import * as moment from 'moment';
 
-export interface ReleaseFilter {
+export class ReleaseFilter {
   description: string;
   dueDateFrom: Date;
   dueDateUntil: Date;
+  page = 0;
+  pageSize = 5;
 }
 
 @Injectable()
@@ -23,6 +25,9 @@ export class ReleaseService {
     const headers = new Headers();
     headers.append('Authorization', 'Basic YWRtaW5AZ21haWwuY29tOmFkbWlu');
 
+    params.set('page', filter.page.toString());
+    params.set('size', filter.pageSize.toString());
+
     if (filter.description) {
       params.set('description', filter.description);
     }
@@ -38,7 +43,16 @@ export class ReleaseService {
     return this.http.get(`${this.releasesUrl}?summary`,
       { headers, search: params })
       .toPromise()
-      .then( response => response.json().content );
-  }
+      .then( response => {
+        const responseJson = response.json();
+        const releases = responseJson.content;
 
+        const result = {
+          releases: releases,
+          total: responseJson.totalElements
+        };
+
+        return result;
+      });
+  }
 }

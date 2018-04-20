@@ -11,19 +11,19 @@
       <div class="ui-g-12 ui-fluid">
         <label>Description</label>
         <input pInputText type="text" name="description"
-        [(ngModel)]="description">
+        [(ngModel)]="filter.description">
       </div>
 
       <div class="ui-g-12">
         <label style="display: block;">Due</label>
         <p-calendar dateFormat="dd/mm/yy" [inputStyle]="{ width: '95px' }"
           name="dueDateFrom"
-          [(ngModel)]="dueDateFrom"></p-calendar>
+          [(ngModel)]="filter.dueDateFrom"></p-calendar>
 
         <label>until</label>
         <p-calendar dateFormat="dd/mm/yy" [inputStyle]="{ width: '95px' }"
           name="dueDateUntil"
-          [(ngModel)]="dueDateUntil"></p-calendar>
+          [(ngModel)]="filter.dueDateUntil"></p-calendar>
 
       </div>
 

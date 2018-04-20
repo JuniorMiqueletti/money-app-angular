@@ -8,9 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ReleasesSearchComponent implements OnInit {
 
-  description: string;
-  dueDateFrom: Date;
-  dueDateUntil: Date;
+  filter = new ReleaseFilter();
 
   releases = [];
 
@@ -22,16 +20,10 @@ export class ReleasesSearchComponent implements OnInit {
 
   search() {
 
-    const filter: ReleaseFilter = {
-      description: this.description,
-      dueDateFrom: this.dueDateFrom,
-      dueDateUntil: this.dueDateUntil
-    };
-
-    console.log(filter);
-
-    this.releaseService.search(filter)
-      .then( releases => this.releases = releases );
+    this.releaseService.search(this.filter)
+      .then( result => {
+        this.releases = result.releases;
+      });
   }
 
 }
