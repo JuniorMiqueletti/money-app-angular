@@ -1,3 +1,4 @@
+import { PeopleService, PeopleFilter } from './../people.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -5,15 +6,25 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './people-search.component.html',
   styleUrls: ['./people-search.component.css']
 })
-export class PeopleSearchComponent {
+export class PeopleSearchComponent implements OnInit {
 
-  people = [
-    { name: 'Manoel Pinheiro', city: 'Uberlândia', state: 'MG', active: true },
-    { name: 'Sebastião da Silva', city: 'São Paulo', state: 'SP', active: false },
-    { name: 'Carla Souza', city: 'Florianópolis', state: 'SC', active: true },
-    { name: 'Luís Pereira', city: 'Curitiba', state: 'PR', active: true },
-    { name: 'Vilmar Andrade', city: 'Rio de Janeiro', state: 'RJ', active: false },
-    { name: 'Paula Maria', city: 'Uberlândia', state: 'MG', active: true }
-  ];
+  totalRegisters = 0;
+  filter = new PeopleFilter();
+  people = [];
+
+  constructor(private peopleService: PeopleService) {}
+
+  ngOnInit() {}
+
+  search(page = 0) {
+
+    this.filter.page = page;
+
+    this.peopleService.search(this.filter)
+      .then( result => {
+        this.people = result.people;
+        this.totalRegisters = result.total;
+      });
+  }
 
 }

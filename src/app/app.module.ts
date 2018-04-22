@@ -1,4 +1,5 @@
 import { ReleaseService } from './releases/release.service';
+import { PeopleService } from './people/people.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -25,7 +26,8 @@ import { HttpModule } from '@angular/http';
     PeopleModule
   ],
   providers: [
-    ReleaseService
+    ReleaseService,
+    PeopleService
   ],
   bootstrap: [
     AppComponent
