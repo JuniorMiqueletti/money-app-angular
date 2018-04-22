@@ -8,21 +8,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ReleasesSearchComponent implements OnInit {
 
+  totalRegisters = 0;
   filter = new ReleaseFilter();
-
   releases = [];
 
   constructor(private releaseService: ReleaseService) {}
 
-  ngOnInit() {
-    this.search();
-  }
+  ngOnInit() {}
 
-  search() {
+  search(page = 0) {
+
+    this.filter.page = page;
 
     this.releaseService.search(this.filter)
       .then( result => {
         this.releases = result.releases;
+        this.totalRegisters = result.total;
       });
   }
 
