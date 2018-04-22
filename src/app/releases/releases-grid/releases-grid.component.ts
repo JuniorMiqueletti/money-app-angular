@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ViewChild } from '@angular/core';
 import { LazyLoadEvent } from 'primeng/components/common/lazyloadevent';
 
 @Component({
@@ -13,6 +13,7 @@ export class ReleasesGridComponent implements OnInit {
   @Input() totalRegisters: number;
 
   @Output() changePageEmitter: EventEmitter<any> = new EventEmitter();
+  @Output() idDeleteEmitter: EventEmitter<any> = new EventEmitter();
 
   constructor() { }
 
@@ -22,6 +23,10 @@ export class ReleasesGridComponent implements OnInit {
   onChangePage(event: LazyLoadEvent) {
     const pageNumber = event.first / event.rows;
     this.changePageEmitter.emit(pageNumber);
+  }
+
+  sendIdReleseDelete(release: any) {
+    this.idDeleteEmitter.emit(release.id);
   }
 
 }

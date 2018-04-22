@@ -29,9 +29,14 @@
   </p-column>
  
   <p-column styleClass="col-actions">
-        <ng-template pTemplate="body">
-          <button pButton icon="fa-pencil" pTooltip="Edit" tooltipPosition="top"></button>
-          <button pButton icon="fa-trash" pTooltip="Exclude" tooltipPosition="top"></button>
+        <ng-template let-rel="rowData" pTemplate="body">
+          
+          <button pButton icon="fa-pencil" pTooltip="Edit"
+            tooltipPosition="top"></button>
+
+          <button pButton icon="fa-trash" pTooltip="Exclude"
+            tooltipPosition="top" (click)="sendIdReleseDelete(rel)"></button>
+            
         </ng-template>
   </p-column>
 

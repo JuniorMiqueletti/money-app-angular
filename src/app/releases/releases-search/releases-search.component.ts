@@ -21,10 +21,21 @@ export class ReleasesSearchComponent implements OnInit {
     this.filter.page = page;
 
     this.releaseService.search(this.filter)
-      .then( result => {
-        this.releases = result.releases;
-        this.totalRegisters = result.total;
+    .then( result => {
+      this.releases = result.releases;
+      this.totalRegisters = result.total;
       });
+  }
+
+  delete(releaseId: number) {
+
+    console.log(releaseId);
+
+    this.releaseService.delete(releaseId)
+    .then(() => {
+      console.log('deleted');
+      // TODO refresh page
+    });
   }
 
 }

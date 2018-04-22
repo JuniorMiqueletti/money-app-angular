@@ -55,4 +55,15 @@ export class ReleaseService {
         return result;
       });
   }
+
+  delete(id: number): Promise<void> {
+
+    const headers = new Headers();
+    headers.append('Authorization', 'Basic YWRtaW5AZ21haWwuY29tOmFkbWlu');
+
+    return this.http.delete(`${this.releasesUrl}/${id}`,
+      { headers })
+      .toPromise()
+      .then(() => null );
+  }
 }

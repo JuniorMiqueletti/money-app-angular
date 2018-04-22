@@ -39,7 +39,8 @@
     <div class="ui-g-12">
 
       <app-releases-grid [releases]="releases" [pageSize]="filter.pageSize"
-        [totalRegisters]="totalRegisters" (changePageEmitter)="search($event)">
+        [totalRegisters]="totalRegisters" (changePageEmitter)="search($event)"
+        (idDeleteEmitter)="delete($event)">
       </app-releases-grid>
 
     </div>
