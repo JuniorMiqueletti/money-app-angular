@@ -1,5 +1,6 @@
 import { ReleaseService, ReleaseFilter } from './../release.service';
 import { Component, OnInit } from '@angular/core';
+import { ToastyService } from 'ng2-toasty';
 
 @Component({
   selector: 'app-releases-search',
@@ -12,7 +13,9 @@ export class ReleasesSearchComponent implements OnInit {
   filter = new ReleaseFilter();
   releases = [];
 
-  constructor(private releaseService: ReleaseService) {}
+  constructor(
+    private releaseService: ReleaseService,
+    private toastyService: ToastyService) {}
 
   ngOnInit() {}
 
@@ -35,6 +38,7 @@ export class ReleasesSearchComponent implements OnInit {
     .then(() => {
       console.log('deleted');
       // TODO refresh page
+      this.toastyService.success('Deleted successfully!');
     });
   }
 
