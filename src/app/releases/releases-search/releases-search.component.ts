@@ -1,6 +1,10 @@
-import { ReleaseService, ReleaseFilter } from './../release.service';
 import { Component, OnInit } from '@angular/core';
+
+import { ReleaseService, ReleaseFilter } from './../release.service';
+
 import { ToastyService } from 'ng2-toasty';
+import { ConfirmationService } from 'primeng/components/common/confirmationservice';
+
 
 @Component({
   selector: 'app-releases-search',
@@ -15,7 +19,9 @@ export class ReleasesSearchComponent implements OnInit {
 
   constructor(
     private releaseService: ReleaseService,
-    private toastyService: ToastyService) {}
+    private toastyService: ToastyService,
+    private confirmationService: ConfirmationService
+  ) {}
 
   ngOnInit() {}
 
@@ -39,6 +45,16 @@ export class ReleasesSearchComponent implements OnInit {
       console.log('deleted');
       // TODO refresh page
       this.toastyService.success('Deleted successfully!');
+      this.search(0);
+    });
+  }
+
+  confirmDelete(release: any) {
+    this.confirmationService.confirm({
+      message: 'Do you sure to delete?',
+      accept: () => {
+        this.delete(release);
+      }
     });
   }
 

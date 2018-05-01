@@ -40,7 +40,7 @@
 
       <app-releases-grid [releases]="releases" [pageSize]="filter.pageSize"
         [totalRegisters]="totalRegisters" (changePageEmitter)="search($event)"
-        (idDeleteEmitter)="delete($event)">
+        (idDeleteEmitter)="confirmDelete($event)">
       </app-releases-grid>
 
     </div>
