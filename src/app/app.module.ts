@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, LOCALE_ID } from '@angular/core';
 import { HttpModule } from '@angular/http';
 
 import { ToastyModule } from 'ng2-toasty';
@@ -36,7 +36,8 @@ import { PeopleModule } from './people/people.module';
   providers: [
     ReleaseService,
     PeopleService,
-    ConfirmationService
+    ConfirmationService,
+    { provide: LOCALE_ID, useValue: 'en-US' }
   ],
   bootstrap: [
     AppComponent
