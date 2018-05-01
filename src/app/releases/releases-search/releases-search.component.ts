@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 
-import { ReleaseService, ReleaseFilter } from './../release.service';
-
 import { ToastyService } from 'ng2-toasty';
 import { ConfirmationService } from 'primeng/components/common/confirmationservice';
 
+import { ReleaseService, ReleaseFilter } from './../release.service';
+import { ErrorHandlerService } from './../../core/error-handler.service';
 
 @Component({
   selector: 'app-releases-search',
@@ -20,7 +20,8 @@ export class ReleasesSearchComponent implements OnInit {
   constructor(
     private releaseService: ReleaseService,
     private toastyService: ToastyService,
-    private confirmationService: ConfirmationService
+    private confirmationService: ConfirmationService,
+    private errorHandlerService: ErrorHandlerService
   ) {}
 
   ngOnInit() {}
@@ -33,7 +34,8 @@ export class ReleasesSearchComponent implements OnInit {
     .then( result => {
       this.releases = result.releases;
       this.totalRegisters = result.total;
-      });
+      })
+    .catch(error => this.errorHandlerService.handle(error));
   }
 
   delete(releaseId: number) {
@@ -46,7 +48,8 @@ export class ReleasesSearchComponent implements OnInit {
       // TODO refresh page
       this.toastyService.success('Deleted successfully!');
       this.search(0);
-    });
+    })
+    .catch(error => this.errorHandlerService.handle(error));
   }
 
   confirmDelete(release: any) {
