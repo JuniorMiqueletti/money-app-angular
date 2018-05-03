@@ -13,6 +13,7 @@ export class PeopleGridComponent implements OnInit {
   @Input() totalRegisters: number;
 
   @Output() changePageEmitter: EventEmitter<any> = new EventEmitter();
+  @Output() idDeleteEmitter: EventEmitter<any> = new EventEmitter();
 
   constructor() { }
 
@@ -22,6 +23,10 @@ export class PeopleGridComponent implements OnInit {
   onChangePage(event: LazyLoadEvent) {
     const pageNumber = event.first / event.rows;
     this.changePageEmitter.emit(pageNumber);
+  }
+
+  sendIdPeopleDelete(people: any) {
+    this.idDeleteEmitter.emit(people.id);
   }
 
 }

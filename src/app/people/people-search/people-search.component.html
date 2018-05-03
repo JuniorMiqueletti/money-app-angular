@@ -6,26 +6,27 @@
       <div class="ui-g-12">
         <h1>People</h1>
       </div>
-      
+
       <div class="ui-g-12 ui-fluid">
         <label>Name</label>
         <input pInputText type="text" name="name"
           [(ngModel)]="filter.name">
       </div>
-      
+
       <div class="ui-g-12">
         <button pButton type="submit" label="Search"></button>
       </div>
-      
+
     </div>
-    
+
   </form>
-    
+
   <div class="ui-g">
     <div class="ui-g-12">
 
       <app-people-grid [people]="people" [pageSize]="filter.pageSize"
-        [totalRegisters]="totalRegisters" (changePageEmitter)="search($event)">
+        [totalRegisters]="totalRegisters" (changePageEmitter)="search($event)"
+        (idDeleteEmitter)="confirmDelete($event)">
       </app-people-grid>
 
     </div>

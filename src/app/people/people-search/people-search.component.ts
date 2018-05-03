@@ -1,5 +1,10 @@
-import { PeopleService, PeopleFilter } from './../people.service';
 import { Component, OnInit } from '@angular/core';
+
+import { ToastyService } from 'ng2-toasty';
+import { ConfirmationService } from 'primeng/components/common/confirmationservice';
+
+import { PeopleService, PeopleFilter } from './../people.service';
+import { ErrorHandlerService } from './../../core/error-handler.service';
 
 @Component({
   selector: 'app-people-search',
@@ -12,7 +17,12 @@ export class PeopleSearchComponent implements OnInit {
   filter = new PeopleFilter();
   people = [];
 
-  constructor(private peopleService: PeopleService) {}
+  constructor(
+    private peopleService: PeopleService,
+    private toastyService: ToastyService,
+    private confirmationService: ConfirmationService,
+    private errorHandlerService: ErrorHandlerService
+  ) {}
 
   ngOnInit() {}
 
@@ -27,4 +37,27 @@ export class PeopleSearchComponent implements OnInit {
       });
   }
 
+  confirmDelete(people: any) {
+    this.confirmationService.confirm({
+      message: 'Do you sure to delete?',
+      accept: () => {
+
+        this.delete(people);
+      }
+    });
+  }
+
+  delete(peopleId: number) {
+
+    console.log(peopleId);
+
+    this.peopleService.delete(peopleId)
+    .then(() => {
+      console.log('deleted');
+      // TODO refresh page
+      this.toastyService.success('Deleted successfully!');
+      this.search(0);
+    })
+    .catch(error => this.errorHandlerService.handle(error));
+  }
 }

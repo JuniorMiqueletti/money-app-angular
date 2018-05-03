@@ -1,4 +1,4 @@
-<p-dataTable [value]="people" 
+<p-dataTable [value]="people"
   [paginator]="true" [rows]="pageSize"
   [responsive]="true" emptyMessage="No register found."
   [lazy]="true" [totalRecords]="totalRegisters"
@@ -21,9 +21,13 @@
   </p-column>
 
   <p-column styleClass="col-actions">
-        <ng-template pTemplate="body">
+        <ng-template let-people="rowData" pTemplate="body">
+
           <button pButton icon="fa-pencil" pTooltip="Edit" tooltipPosition="top"></button>
-          <button pButton icon="fa-trash" pTooltip="Exclude" tooltipPosition="top"></button>
+
+          <button pButton icon="fa-trash" pTooltip="Exclude"
+            tooltipPosition="top" (click)="sendIdPeopleDelete(people)"></button>
+
         </ng-template>
   </p-column>
 

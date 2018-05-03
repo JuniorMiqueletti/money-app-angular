@@ -45,4 +45,15 @@ export class PeopleService {
         return result;
       });
   }
+
+  delete(id: number): Promise<void> {
+
+    const headers = new Headers();
+    headers.append('Authorization', 'Basic YWRtaW5AZ21haWwuY29tOmFkbWlu');
+
+    return this.http.delete(`${this.PeopleUrl}/${id}`,
+      { headers})
+      .toPromise()
+      .then(() => null );
+  }
 }
