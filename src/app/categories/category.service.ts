@@ -6,7 +6,7 @@ import 'rxjs/add/operator/toPromise';
 @Injectable()
 export class CategoryService {
 
-  categoryUrl = 'http://localhost:8080/categories';
+  categoryUrl = 'http://localhost:8080/category';
 
   constructor( private http: Http ) { }
 

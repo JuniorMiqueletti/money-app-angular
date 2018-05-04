@@ -9,6 +9,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { ErrorHandlerService } from './error-handler.service';
 import { ReleaseService } from '.././releases/release.service';
 import { PeopleService } from '.././people/people.service';
+import { CategoryService } from './../categories/category.service';
 
 @NgModule({
   imports: [
@@ -29,6 +30,7 @@ import { PeopleService } from '.././people/people.service';
     ReleaseService,
     PeopleService,
     ConfirmationService,
+    CategoryService,
     { provide: LOCALE_ID, useValue: 'en-US' }
   ]
 })

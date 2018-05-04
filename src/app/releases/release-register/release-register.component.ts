@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
+import { CategoryService } from './../../categories/category.service';
+import { ErrorHandlerService } from './../../core/error-handler.service';
+
 @Component({
   selector: 'app-release-register',
   templateUrl: './release-register.component.html',
@@ -12,10 +15,7 @@ export class ReleaseRegisterComponent implements OnInit {
     { label: 'Expense', value: 'EXPENSE'}
   ];
 
-  categories = [
-    { label: 'Food', value: 1},
-    { label: 'Transport', value: 2}
-  ];
+  categories = [];
 
   people = [
     { label: 'João da Silva', value: 4 },
@@ -23,9 +23,21 @@ export class ReleaseRegisterComponent implements OnInit {
     { label: 'Maria Abadia', value: 3 },
   ];
 
-  constructor() { }
+  constructor(
+    private categoryService: CategoryService,
+    private errorHandlerService: ErrorHandlerService
+  ) { }
 
   ngOnInit() {
+    this.loadCategories();
+  }
+
+  loadCategories() {
+    return this.categoryService.findAll()
+    .then(categories => {
+      this.categories = categories.map(c => ({ label: c.name, value: c.id }));
+    })
+    .catch(error => this.errorHandlerService.handle(error));
   }
 
 }
