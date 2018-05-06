@@ -1,3 +1,4 @@
+import { PeopleService } from './../../people/people.service';
 import { Component, OnInit } from '@angular/core';
 
 import { CategoryService } from './../../categories/category.service';
@@ -17,25 +18,31 @@ export class ReleaseRegisterComponent implements OnInit {
 
   categories = [];
 
-  people = [
-    { label: 'João da Silva', value: 4 },
-    { label: 'Sebastião Souza', value: 9 },
-    { label: 'Maria Abadia', value: 3 },
-  ];
+  people = [];
 
   constructor(
     private categoryService: CategoryService,
+    private peopleService: PeopleService,
     private errorHandlerService: ErrorHandlerService
   ) { }
 
   ngOnInit() {
     this.loadCategories();
+    this.loadPeople();
   }
 
   loadCategories() {
     return this.categoryService.findAll()
     .then(categories => {
       this.categories = categories.map(c => ({ label: c.name, value: c.id }));
+    })
+    .catch(error => this.errorHandlerService.handle(error));
+  }
+
+  loadPeople() {
+    return this.peopleService.findAll()
+    .then(people => {
+      this.people = people.map(p => ({ label: p.name, value: p.id}));
     })
     .catch(error => this.errorHandlerService.handle(error));
   }

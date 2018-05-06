@@ -12,7 +12,7 @@ export class PeopleFilter {
 @Injectable()
 export class PeopleService {
 
-  PeopleUrl = 'http://localhost:8080/person';
+  peopleUrl = 'http://localhost:8080/person';
 
   constructor(private http: Http) { }
 
@@ -30,7 +30,7 @@ export class PeopleService {
       params.set('name', filter.name);
     }
 
-    return this.http.get(this.PeopleUrl,
+    return this.http.get(this.peopleUrl,
       { headers, search: params })
       .toPromise()
       .then( response => {
@@ -51,9 +51,18 @@ export class PeopleService {
     const headers = new Headers();
     headers.append('Authorization', 'Basic YWRtaW5AZ21haWwuY29tOmFkbWlu');
 
-    return this.http.delete(`${this.PeopleUrl}/${id}`,
+    return this.http.delete(`${this.peopleUrl}/${id}`,
       { headers})
       .toPromise()
       .then(() => null );
+  }
+
+  findAll(): Promise<any> {
+    const headers = new Headers();
+    headers.append('Authorization', 'Basic YWRtaW5AZ21haWwuY29tOmFkbWlu');
+
+    return this.http.get(this.peopleUrl, { headers })
+      .toPromise()
+      .then(response => response.json().content);
   }
 }
