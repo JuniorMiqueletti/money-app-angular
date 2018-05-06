@@ -1,4 +1,4 @@
-import { People } from './people.model';
+import { Person } from './person.model';
 import { Category } from './category.model';
 
 export class Release {
@@ -8,7 +8,7 @@ export class Release {
     payDate: Date;
     value: number;
     type: 'RECIPE';
-    people = new People();
+    person = new Person();
     category = new Category();
     observation: string;
 }

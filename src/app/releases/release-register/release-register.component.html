@@ -69,8 +69,7 @@
         <p-dropdown name="category" [options]="categories"
           [autoWidth]="false" placeholder="Select"
           ngModel #category="ngModel" required
-          [(ngModel)]="release.category">
-
+          [(ngModel)]="release.category.id">
         </p-dropdown>
 
         <app-message [control]="category" error="required" text="Inform a category"></app-message>
@@ -83,7 +82,7 @@
 
         <p-dropdown name="person" [options]="people" [autoWidth]="false" 
           placeholder="Select" filter="true" ngModel 
-          #person="ngModel" required [(ngModel)]="release.people">
+          #person="ngModel" required [(ngModel)]="release.person.id">
         </p-dropdown>
 
         <app-message [control]="person" error="required" text="Inform a person"></app-message>
@@ -94,7 +93,7 @@
         <label>Obersavation</label>
 
         <textarea name="inputTextArea" pInputTextarea rows="3"
-          [(ngModel)]="release.obersavation"></textarea>
+          [(ngModel)]="release.observation"></textarea>
 
       </div>
 

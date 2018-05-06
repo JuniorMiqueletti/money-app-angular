@@ -1,7 +1,10 @@
 import { Injectable, Component } from '@angular/core';
 import { Http, Headers, URLSearchParams } from '@angular/http';
+
 import 'rxjs/add/operator/toPromise';
 import * as moment from 'moment';
+
+import { Release } from './../core/model/release.model';
 
 export class ReleaseFilter {
   description: string;
@@ -65,5 +68,18 @@ export class ReleaseService {
       { headers })
       .toPromise()
       .then(() => null );
+  }
+
+  save(release: Release): Promise<Release> {
+
+    const headers = new Headers();
+    headers.append('Authorization', 'Basic YWRtaW5AZ21haWwuY29tOmFkbWlu');
+    headers.append('Content-Type', 'application/json');
+
+    return this.http.post(this.releasesUrl,
+      JSON.stringify(release), { headers })
+    .toPromise()
+    .then(response => response.json());
+
   }
 }

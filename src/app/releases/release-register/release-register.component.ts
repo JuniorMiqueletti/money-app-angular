@@ -1,3 +1,5 @@
+import { ToastyService } from 'ng2-toasty';
+import { ReleaseService } from './../release.service';
 import { FormControl } from '@angular/forms';
 import { PeopleService } from './../../people/people.service';
 import { Component, OnInit } from '@angular/core';
@@ -26,6 +28,8 @@ export class ReleaseRegisterComponent implements OnInit {
   constructor(
     private categoryService: CategoryService,
     private peopleService: PeopleService,
+    private releaseService: ReleaseService,
+    private toastyService: ToastyService,
     private errorHandlerService: ErrorHandlerService
   ) { }
 
@@ -51,7 +55,16 @@ export class ReleaseRegisterComponent implements OnInit {
   }
 
   save(form: FormControl) {
-    console.log(form);
+
+    this.releaseService.save(this.release)
+
+    .then(() => {
+      this.toastyService.success('Release created successful!');
+
+      form.reset();
+      this.release = new Release();
+    })
+    .catch(error => this.errorHandlerService.handle(error));
   }
 
 }
