@@ -1,5 +1,5 @@
 <div class="container">
-  <form #fNgForm="ngForm" autocomplete="off">
+  <form #fNgForm="ngForm" autocomplete="off" (ngSubmit)="save(fNgForm)">
     <div class="ui-g">
 
       <div class="ui-g-12">
@@ -7,78 +7,95 @@
       </div>
 
       <div class="ui-g-12">
-        <p-selectButton [options]="types" #type></p-selectButton>
+        <p-selectButton name="type" [options]="types"
+        [(ngModel)]="release.type" #type></p-selectButton>
       </div>
 
       <div class="ui-g-6 ui-md-3 ui-fluid">
         <label>Due</label>
         <p-calendar name ="dueDate" dateFormat="dd/mm/yy"
-        showIcon="true"
+        showIcon="true" [(ngModel)]="release.dueDate"
         ngModel #dueDate="ngModel" required></p-calendar>
 
         <app-message [control]="dueDate" error="required"
-        text="Inform the Due"></app-message>
+          text="Inform the Due"></app-message>
       </div>
 
       <div class="ui-g-6 ui-md-3 ui-fluid">
+
         <label>{{ type.value === 'EXPENSE' ? 'Payment' : 'Receivement' }}</label>
-        <p-calendar dateFormat="dd/mm/yy" showIcon="true"></p-calendar>
+
+        <p-calendar name="payDate" dateFormat="dd/mm/yy"
+          showIcon="true" [(ngModel)]="release.payDate"></p-calendar>
+
       </div>
 
       <div class="ui-g-12 ui-md-9 ui-fluid">
+
         <label>Description</label>
+
         <input pInputText type="text" name="description"
           ngModel #description="ngModel"
-          required minlength="5">
+          required minlength="5"
+          [(ngModel)]="release.description">
 
-          <app-message [control]="description" error="required"
-            text="Inform a description"></app-message>
+        <app-message [control]="description" error="required"
+          text="Inform a description"></app-message>
 
-          <app-message [control]="description" error="minlength"
-            text="{{ description.errors?.minlength?.requiredLength }} characters minimum"></app-message>
+        <app-message [control]="description" error="minlength"
+          text="{{ description.errors?.minlength?.requiredLength }} characters minimum"></app-message>
 
       </div>
 
       <div class="ui-g-12 ui-md-3 ui-fluid">
+
         <label>Value</label>
+
         <input pInputText type="text" name="value"
-          placeholder="0,00"
-          currencyMask
+          placeholder="0,00" currencyMask
           [options]="{ prefix: '', thousands: '.', decimal: ',', allowNegative: false }"
-          ngModel #value="ngModel" required>
+          ngModel #value="ngModel"
+          required [(ngModel)]="release.value">
 
         <app-message [control]="value" error="required"
           text="Inform a value"></app-message>
+
       </div>
 
       <div class="ui-g-12 ui-md-6 ui-fluid">
+
         <label>Category</label>
+
         <p-dropdown name="category" [options]="categories"
-          [autoWidth]="false"
-          placeholder="Select"
-          ngModel #category="ngModel" required>
+          [autoWidth]="false" placeholder="Select"
+          ngModel #category="ngModel" required
+          [(ngModel)]="release.category">
+
         </p-dropdown>
 
-        <app-message [control]="category" error="required"
-          text="Inform a category"></app-message>
+        <app-message [control]="category" error="required" text="Inform a category"></app-message>
+
       </div>
 
       <div class="ui-g-12 ui-md-6 ui-fluid">
+
         <label>Person</label>
-        <p-dropdown name="person" [options]="people"
-          [autoWidth]="false"
-          placeholder="Select"
-          filter="true"
-          ngModel #person="ngModel" required>
+
+        <p-dropdown name="person" [options]="people" [autoWidth]="false" 
+          placeholder="Select" filter="true" ngModel 
+          #person="ngModel" required [(ngModel)]="release.people">
         </p-dropdown>
 
-        <app-message [control]="person" error="required"
-          text="Inform a person"></app-message>
+        <app-message [control]="person" error="required" text="Inform a person"></app-message>
       </div>
 
       <div class="ui-g-12 ui-fluid">
+
         <label>Obersavation</label>
-        <textarea pInputTextarea rows="3"></textarea>
+
+        <textarea name="inputTextArea" pInputTextarea rows="3"
+          [(ngModel)]="release.obersavation"></textarea>
+
       </div>
 
       <div class="ui-g-12">

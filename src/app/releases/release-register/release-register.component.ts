@@ -1,8 +1,10 @@
+import { FormControl } from '@angular/forms';
 import { PeopleService } from './../../people/people.service';
 import { Component, OnInit } from '@angular/core';
 
 import { CategoryService } from './../../categories/category.service';
 import { ErrorHandlerService } from './../../core/error-handler.service';
+import { Release } from '../../core/model/release.model';
 
 @Component({
   selector: 'app-release-register',
@@ -17,8 +19,9 @@ export class ReleaseRegisterComponent implements OnInit {
   ];
 
   categories = [];
-
   people = [];
+  release = new Release();
+
 
   constructor(
     private categoryService: CategoryService,
@@ -45,6 +48,10 @@ export class ReleaseRegisterComponent implements OnInit {
       this.people = people.map(p => ({ label: p.name, value: p.id}));
     })
     .catch(error => this.errorHandlerService.handle(error));
+  }
+
+  save(form: FormControl) {
+    console.log(form);
   }
 
 }
