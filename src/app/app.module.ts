@@ -4,12 +4,21 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
+import { Routes, RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { ReleasesModule } from './releases/releases.module';
 import { PeopleModule } from './people/people.module';
+import { ReleasesSearchComponent } from './releases/releases-search/releases-search.component';
+import { ReleaseRegisterComponent } from './releases/release-register/release-register.component';
+import { PeopleSearchComponent } from './people/people-search/people-search.component';
 
+const routes: Routes = [
+  { path: 'releases', component: ReleasesSearchComponent },
+  { path: 'releases/new', component: ReleaseRegisterComponent },
+  { path: 'people', component: PeopleSearchComponent }
+];
 
 @NgModule({
   declarations: [
@@ -19,6 +28,7 @@ import { PeopleModule } from './people/people.module';
     BrowserModule,
     BrowserAnimationsModule,
     HttpModule,
+    RouterModule.forRoot(routes),
 
     CoreModule,
     ReleasesModule,
