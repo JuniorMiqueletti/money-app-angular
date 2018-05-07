@@ -80,8 +80,8 @@
 
         <label>Person</label>
 
-        <p-dropdown name="person" [options]="people" [autoWidth]="false" 
-          placeholder="Select" filter="true" ngModel 
+        <p-dropdown name="person" [options]="people" [autoWidth]="false"
+          placeholder="Select" filter="true" ngModel
           #person="ngModel" required [(ngModel)]="release.person.id">
         </p-dropdown>
 
@@ -100,7 +100,7 @@
       <div class="ui-g-12">
         <button pButton type="submit" label="Save" [disabled]="fNgForm.invalid"></button>
         <button pButton type="submit" label="New" class="ui-button-info"></button>
-        <a href="javascript:;">Return to search</a>
+        <a routerLink="/releases">Return to search</a>
       </div>
 
     </div>

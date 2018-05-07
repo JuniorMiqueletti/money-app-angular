@@ -13,11 +13,13 @@ import { PeopleModule } from './people/people.module';
 import { ReleasesSearchComponent } from './releases/releases-search/releases-search.component';
 import { ReleaseRegisterComponent } from './releases/release-register/release-register.component';
 import { PeopleSearchComponent } from './people/people-search/people-search.component';
+import { PeopleRegisterComponent } from './people/people-register/people-register.component';
 
 const routes: Routes = [
   { path: 'releases', component: ReleasesSearchComponent },
   { path: 'releases/new', component: ReleaseRegisterComponent },
-  { path: 'people', component: PeopleSearchComponent }
+  { path: 'people', component: PeopleSearchComponent },
+  { path: 'people/new', component: PeopleRegisterComponent }
 ];
 
 @NgModule({
