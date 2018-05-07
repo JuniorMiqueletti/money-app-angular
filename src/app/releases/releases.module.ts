@@ -3,7 +3,6 @@ import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { ReleasesGridComponent } from './releases-grid/releases-grid.component';
 import { ReleaseRegisterComponent } from './release-register/release-register.component';
 import { ReleasesSearchComponent } from './releases-search/releases-search.component';
 
@@ -40,8 +39,7 @@ import { SharedModule } from '../shared/shared.module';
   ],
   declarations: [
     ReleaseRegisterComponent,
-    ReleasesSearchComponent,
-    ReleasesGridComponent
+    ReleasesSearchComponent
     ],
   exports: [
     ReleaseRegisterComponent,
