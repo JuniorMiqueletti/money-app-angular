@@ -1,12 +1,14 @@
-import { ToastyService } from 'ng2-toasty';
-import { ReleaseService } from './../release.service';
 import { FormControl } from '@angular/forms';
-import { PeopleService } from './../../people/people.service';
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+
+import { ToastyService } from 'ng2-toasty';
 
 import { CategoryService } from './../../categories/category.service';
 import { ErrorHandlerService } from './../../core/error-handler.service';
 import { Release } from '../../core/model/release.model';
+import { ReleaseService } from './../release.service';
+import { PeopleService } from './../../people/people.service';
 
 @Component({
   selector: 'app-release-register',
@@ -30,10 +32,14 @@ export class ReleaseRegisterComponent implements OnInit {
     private peopleService: PeopleService,
     private releaseService: ReleaseService,
     private toastyService: ToastyService,
-    private errorHandlerService: ErrorHandlerService
+    private errorHandlerService: ErrorHandlerService,
+    private route: ActivatedRoute
   ) { }
 
   ngOnInit() {
+
+    console.log(this.route.snapshot.params['id']);
+
     this.loadCategories();
     this.loadPeople();
   }

@@ -18,6 +18,7 @@ import { PeopleRegisterComponent } from './people/people-register/people-registe
 const routes: Routes = [
   { path: 'releases', component: ReleasesSearchComponent },
   { path: 'releases/new', component: ReleaseRegisterComponent },
+  { path: 'releases/:id', component: ReleaseRegisterComponent },
   { path: 'people', component: PeopleSearchComponent },
   { path: 'people/new', component: PeopleRegisterComponent }
 ];
