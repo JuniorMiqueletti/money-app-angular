@@ -48,42 +48,45 @@ export class ReleaseRegisterComponent implements OnInit {
     this.loadPeople();
   }
 
-  loadCategories() {
-    return this.categoryService.findAll()
-    .then(categories => {
-      this.categories = categories.map(c => ({ label: c.name, value: c.id }));
-    })
-    .catch(error => this.errorHandlerService.handle(error));
-  }
-
-  loadPeople() {
-    return this.peopleService.findAll()
-    .then(people => {
-      this.people = people.map(p => ({ label: p.name, value: p.id}));
-    })
-    .catch(error => this.errorHandlerService.handle(error));
-  }
-
   save(form: FormControl) {
 
     this.releaseService.save(this.release)
+      .then(() => {
+        this.toastyService.success('Release created successful!');
 
-    .then(() => {
-      this.toastyService.success('Release created successful!');
-
-      form.reset();
-      this.release = new Release();
-    })
-    .catch(error => this.errorHandlerService.handle(error));
+        form.reset();
+        this.release = new Release();
+      })
+      .catch(error => this.errorHandlerService.handle(error));
   }
 
-  loadRelease(releaseId: number) {
+  get isEdition() {
+    console.log(this.release.id);
+    return Boolean(this.release.id);
+  }
+
+  private loadRelease(releaseId: number) {
 
     this.releaseService.findById(releaseId)
       .then(release => {
         this.release = release;
-        console.log(release.dueDate);
-    })
+      })
+      .catch(error => this.errorHandlerService.handle(error));
+  }
+
+  private loadCategories() {
+    return this.categoryService.findAll()
+      .then(categories => {
+        this.categories = categories.map(c => ({ label: c.name, value: c.id }));
+      })
+      .catch(error => this.errorHandlerService.handle(error));
+  }
+
+  private loadPeople() {
+    return this.peopleService.findAll()
+      .then(people => {
+        this.people = people.map(p => ({ label: p.name, value: p.id}));
+      })
       .catch(error => this.errorHandlerService.handle(error));
   }
 
