@@ -25,7 +25,7 @@ export class ReleaseRegisterComponent implements OnInit {
   categories = [];
   people = [];
   release = new Release();
-
+  releaseId: number;
 
   constructor(
     private categoryService: CategoryService,
@@ -38,7 +38,11 @@ export class ReleaseRegisterComponent implements OnInit {
 
   ngOnInit() {
 
-    console.log(this.route.snapshot.params['id']);
+    this.releaseId = this.route.snapshot.params['id'];
+
+    if (this.releaseId) {
+      this.loadRelease(this.releaseId);
+    }
 
     this.loadCategories();
     this.loadPeople();
@@ -71,6 +75,16 @@ export class ReleaseRegisterComponent implements OnInit {
       this.release = new Release();
     })
     .catch(error => this.errorHandlerService.handle(error));
+  }
+
+  loadRelease(releaseId: number) {
+
+    this.releaseService.findById(releaseId)
+      .then(release => {
+        this.release = release;
+        console.log(release.dueDate);
+    })
+      .catch(error => this.errorHandlerService.handle(error));
   }
 
 }

@@ -82,4 +82,38 @@ export class ReleaseService {
     .then(response => response.json());
 
   }
+
+  update(release: Release) {
+    return null;
+  }
+
+  findById(id: number): Promise<Release> {
+
+    const headers = new Headers();
+    headers.append('Authorization', 'Basic YWRtaW5AZ21haWwuY29tOmFkbWlu');
+
+
+    return this.http.get(`${this.releasesUrl}/${id}`,
+        { headers})
+      .toPromise()
+      .then(response => {
+        const releaseResponse = response.json() as Release;
+
+        this.convertString2Date([releaseResponse]);
+
+        return releaseResponse;
+      });
+  }
+
+  private convertString2Date(releases: Release[]) {
+    for (const release of releases) {
+      release.dueDate = moment(release.dueDate, 'YYYY-MM-DD')
+        .toDate();
+
+      if (release.payDate) {
+        release.payDate = moment(release.payDate, 'YYYY-MM-DD')
+          .toDate();
+      }
+    }
+  }
 }
