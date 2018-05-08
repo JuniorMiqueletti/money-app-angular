@@ -50,6 +50,16 @@ export class ReleaseRegisterComponent implements OnInit {
 
   save(form: FormControl) {
 
+    if (this.editing) {
+      this.update(form);
+
+    } else {
+      this.addRelease(form);
+    }
+  }
+
+  addRelease(form: FormControl) {
+
     this.releaseService.save(this.release)
       .then(() => {
         this.toastyService.success('Release created successful!');
@@ -60,8 +70,18 @@ export class ReleaseRegisterComponent implements OnInit {
       .catch(error => this.errorHandlerService.handle(error));
   }
 
-  get isEdition() {
-    console.log(this.release.id);
+  update(form: FormControl) {
+
+    this.releaseService.update(this.release)
+      .then(release => {
+        this.release = release;
+
+        this.toastyService.success('Release edited successful!');
+      })
+      .catch(error => this.errorHandlerService.handle(error));
+  }
+
+  get editing() {
     return Boolean(this.release.id);
   }
 

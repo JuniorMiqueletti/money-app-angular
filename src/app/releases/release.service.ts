@@ -83,8 +83,22 @@ export class ReleaseService {
 
   }
 
-  update(release: Release) {
-    return null;
+  update(release: Release): Promise<Release> {
+
+    const headers = new Headers();
+    headers.append('Authorization', 'Basic YWRtaW5AZ21haWwuY29tOmFkbWlu');
+    headers.append('Content-Type', 'application/json');
+
+    return this.http.put(`${this.releasesUrl}/${release.id}`,
+        JSON.stringify(release), { headers })
+      .toPromise()
+      .then(response => {
+        const releaseChanged = response.json() as Release;
+
+        this.convertString2Date([releaseChanged]);
+
+        return releaseChanged;
+      });
   }
 
   findById(id: number): Promise<Release> {
