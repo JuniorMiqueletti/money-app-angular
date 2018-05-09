@@ -60,7 +60,7 @@
 
         <p-column field="value" header="Value" styleClass="col-value">
           <ng-template let-rel="rowData" pTemplate="body">
-            <span [style.color]=" rel.type === 'RECIPE' ? 'red' : 'blue' ">
+            <span [style.color]=" rel.type === 'RECIPE' ? 'blue' : 'red' ">
               {{rel.value | number:'1.2-2'}}
             </span>
           </ng-template>
