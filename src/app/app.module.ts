@@ -16,6 +16,7 @@ import { PeopleSearchComponent } from './people/people-search/people-search.comp
 import { PeopleRegisterComponent } from './people/people-register/people-register.component';
 
 const routes: Routes = [
+  { path: '', redirectTo: 'releases', pathMatch: 'full' },
   { path: 'releases', component: ReleasesSearchComponent },
   { path: 'releases/new', component: ReleaseRegisterComponent },
   { path: 'releases/:id', component: ReleaseRegisterComponent },
