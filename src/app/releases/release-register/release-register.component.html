@@ -98,9 +98,15 @@
       </div>
 
       <div class="ui-g-12">
-        <button pButton type="submit" label="Save" [disabled]="fNgForm.invalid"></button>
-        <button pButton type="submit" label="New" class="ui-button-info"></button>
+
+        <button pButton type="submit" label="Save"
+          [disabled]="fNgForm.invalid"></button>
+
+        <button pButton type="button" label="New"
+          class="ui-button-info" (click)="new(fNgForm)"></button>
+
         <a routerLink="/releases">Return to search</a>
+
       </div>
 
     </div>

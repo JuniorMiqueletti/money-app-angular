@@ -1,6 +1,6 @@
 import { FormControl } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { ToastyService } from 'ng2-toasty';
 
@@ -33,7 +33,8 @@ export class ReleaseRegisterComponent implements OnInit {
     private releaseService: ReleaseService,
     private toastyService: ToastyService,
     private errorHandlerService: ErrorHandlerService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -61,11 +62,9 @@ export class ReleaseRegisterComponent implements OnInit {
   addRelease(form: FormControl) {
 
     this.releaseService.save(this.release)
-      .then(() => {
+      .then(releaseAdded => {
         this.toastyService.success('Release created successful!');
-
-        form.reset();
-        this.release = new Release();
+        this.router.navigate(['/releases', releaseAdded.id]);
       })
       .catch(error => this.errorHandlerService.handle(error));
   }
@@ -83,6 +82,16 @@ export class ReleaseRegisterComponent implements OnInit {
 
   get editing() {
     return Boolean(this.release.id);
+  }
+
+  new(form: FormControl) {
+    form.reset();
+
+    setTimeout(function() {
+      this.release = new Release();
+    }.bind(this), 1);
+
+    this.router.navigate(['/releases/new']);
   }
 
   private loadRelease(releaseId: number) {
