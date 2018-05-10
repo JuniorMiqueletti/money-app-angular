@@ -7,7 +7,7 @@ export class Release {
     dueDate: Date;
     payDate: Date;
     value: number;
-    type: 'RECIPE';
+    type = 'RECIPE';
     person = new Person();
     category = new Category();
     observation: string;
