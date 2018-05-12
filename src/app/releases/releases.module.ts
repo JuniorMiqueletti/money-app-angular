@@ -41,9 +41,6 @@ import { SharedModule } from '../shared/shared.module';
     ReleaseRegisterComponent,
     ReleasesSearchComponent
     ],
-  exports: [
-    ReleaseRegisterComponent,
-    ReleasesSearchComponent
-  ]
+  exports: []
 })
 export class ReleasesModule { }

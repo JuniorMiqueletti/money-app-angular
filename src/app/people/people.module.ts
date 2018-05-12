@@ -33,9 +33,6 @@ import { SharedModule } from '../shared/shared.module';
     PeopleSearchComponent,
     PeopleGridComponent
   ],
-  exports: [
-    PeopleRegisterComponent,
-    PeopleSearchComponent
-  ]
+  exports: []
 })
 export class PeopleModule { }

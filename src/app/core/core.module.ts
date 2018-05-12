@@ -11,6 +11,7 @@ import { ErrorHandlerService } from './error-handler.service';
 import { ReleaseService } from '.././releases/release.service';
 import { PeopleService } from '.././people/people.service';
 import { CategoryService } from './../categories/category.service';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 @NgModule({
   imports: [
@@ -21,6 +22,7 @@ import { CategoryService } from './../categories/category.service';
   ],
   declarations: [
     NavbarComponent,
+    PageNotFoundComponent,
   ],
   exports: [
     NavbarComponent,
