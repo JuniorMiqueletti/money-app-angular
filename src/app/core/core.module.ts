@@ -1,6 +1,7 @@
 import { NgModule, LOCALE_ID } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { Title } from '@angular/platform-browser';
 
 import { ToastyModule } from 'ng2-toasty';
 import { ConfirmDialogModule } from 'primeng/components/confirmdialog/confirmdialog';
@@ -30,11 +31,12 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     ConfirmDialogModule
   ],
   providers: [
-    ErrorHandlerService,
+    CategoryService,
     ReleaseService,
     PeopleService,
+    ErrorHandlerService,
     ConfirmationService,
-    CategoryService,
+    Title,
     { provide: LOCALE_ID, useValue: 'en-US' }
   ]
 })

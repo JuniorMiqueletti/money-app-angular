@@ -1,6 +1,7 @@
 import { FormControl } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Title } from '@angular/platform-browser';
 
 import { ToastyService } from 'ng2-toasty';
 
@@ -34,10 +35,13 @@ export class ReleaseRegisterComponent implements OnInit {
     private toastyService: ToastyService,
     private errorHandlerService: ErrorHandlerService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private title: Title
   ) { }
 
   ngOnInit() {
+
+    this.title.setTitle('New release');
 
     this.releaseId = this.route.snapshot.params['id'];
 
@@ -76,6 +80,7 @@ export class ReleaseRegisterComponent implements OnInit {
         this.release = release;
 
         this.toastyService.success('Release edited successful!');
+        this.setTitleUpdate();
       })
       .catch(error => this.errorHandlerService.handle(error));
   }
@@ -99,6 +104,7 @@ export class ReleaseRegisterComponent implements OnInit {
     this.releaseService.findById(releaseId)
       .then(release => {
         this.release = release;
+        this.setTitleUpdate();
       })
       .catch(error => this.errorHandlerService.handle(error));
   }
@@ -117,6 +123,10 @@ export class ReleaseRegisterComponent implements OnInit {
         this.people = people.map(p => ({ label: p.name, value: p.id}));
       })
       .catch(error => this.errorHandlerService.handle(error));
+  }
+
+  private setTitleUpdate() {
+    this.title.setTitle(`Updating release: ${this.release.description}`);
   }
 
 }
