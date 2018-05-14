@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
+import { PageNotFoundComponent } from './core/page-not-found/page-not-found.component';
 import { ReleasesSearchComponent } from './releases/releases-search/releases-search.component';
 import { ReleaseRegisterComponent } from './releases/release-register/release-register.component';
 import { PeopleSearchComponent } from './people/people-search/people-search.component';
 import { PeopleRegisterComponent } from './people/people-register/people-register.component';
-import { PageNotFoundComponent } from './core/page-not-found/page-not-found.component';
 
 const routes: Routes = [
     { path: '', redirectTo: 'releases', pathMatch: 'full' },
