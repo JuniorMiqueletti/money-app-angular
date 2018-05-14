@@ -9,9 +9,6 @@ import { PageNotFoundComponent } from './core/page-not-found/page-not-found.comp
 
 const routes: Routes = [
     { path: '', redirectTo: 'releases', pathMatch: 'full' },
-    { path: 'releases', component: ReleasesSearchComponent },
-    { path: 'releases/new', component: ReleaseRegisterComponent },
-    { path: 'releases/:id', component: ReleaseRegisterComponent },
     { path: 'people', component: PeopleSearchComponent },
     { path: 'people/new', component: PeopleRegisterComponent },
     { path: 'page-not-found', component: PageNotFoundComponent },
