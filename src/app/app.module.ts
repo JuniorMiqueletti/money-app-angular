@@ -7,6 +7,7 @@ import { HttpModule } from '@angular/http';
 import { Routes, RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
+import { AppRoutingModule } from './app-routing.module';
 import { CoreModule } from './core/core.module';
 import { ReleasesModule } from './releases/releases.module';
 import { PeopleModule } from './people/people.module';
@@ -16,17 +17,6 @@ import { PeopleSearchComponent } from './people/people-search/people-search.comp
 import { PeopleRegisterComponent } from './people/people-register/people-register.component';
 import { PageNotFoundComponent } from './core/page-not-found/page-not-found.component';
 
-const routes: Routes = [
-  { path: '', redirectTo: 'releases', pathMatch: 'full' },
-  { path: 'releases', component: ReleasesSearchComponent },
-  { path: 'releases/new', component: ReleaseRegisterComponent },
-  { path: 'releases/:id', component: ReleaseRegisterComponent },
-  { path: 'people', component: PeopleSearchComponent },
-  { path: 'people/new', component: PeopleRegisterComponent },
-  { path: 'page-not-found', component: PageNotFoundComponent },
-  { path: '**', redirectTo: 'page-not-found', pathMatch: 'full' }
-];
-
 @NgModule({
   declarations: [
     AppComponent
@@ -35,8 +25,7 @@ const routes: Routes = [
     BrowserModule,
     BrowserAnimationsModule,
     HttpModule,
-    RouterModule.forRoot(routes),
-
+    AppRoutingModule,
     CoreModule,
     ReleasesModule,
     PeopleModule
