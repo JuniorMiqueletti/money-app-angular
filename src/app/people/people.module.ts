@@ -13,6 +13,7 @@ import { PeopleRegisterComponent } from './people-register/people-register.compo
 import { PeopleGridComponent } from './people-grid/people-grid.component';
 import { PeopleSearchComponent } from './people-search/people-search.component';
 import { SharedModule } from '../shared/shared.module';
+import { PeopleRoutingModule } from './people-routing.module';
 
 @NgModule({
   imports: [
@@ -26,7 +27,8 @@ import { SharedModule } from '../shared/shared.module';
     TooltipModule,
     InputMaskModule,
 
-    SharedModule
+    SharedModule,
+    PeopleRoutingModule
   ],
   declarations: [
     PeopleRegisterComponent,
