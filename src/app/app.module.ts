@@ -10,6 +10,7 @@ import { CoreModule } from './core/core.module';
 import { ReleasesModule } from './releases/releases.module';
 import { PeopleModule } from './people/people.module';
 import { AppRoutingModule } from './app-routing.module';
+import { SecurityModule } from './security/security.module';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { AppRoutingModule } from './app-routing.module';
     CoreModule,
     ReleasesModule,
     PeopleModule,
+    SecurityModule,
     AppRoutingModule
   ],
   bootstrap: [
