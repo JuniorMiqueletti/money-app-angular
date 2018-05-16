@@ -1,3 +1,29 @@
-<p>
-  login works!
-</p>
+<div class="container" style="max-width: 400px; margin: auto">
+
+  <form autocomplete="off">
+    <div class="ui-g ui-fluid">
+
+      <div class="ui-g-12">
+        <h1>Login</h1>
+      </div>
+
+      <div class="ui-g-12">
+        <input pInputText type="email" name="user" placeholder="E-mail"
+          ngModel required #user>
+      </div>
+
+      <div class="ui-g-12">
+        <input pInputText type="password" name="password" placeholder="password"
+          ngModel required #password>
+      </div>
+
+      <div class="ui-g-12">
+        <button pButton type="submit" label="Login"
+          (click)="login(user.value, password.value)"></button>
+      </div>
+
+    </div>
+  </form>
+
+</div>
+
