@@ -13,6 +13,7 @@ import { ReleaseService } from '.././releases/release.service';
 import { PeopleService } from '.././people/people.service';
 import { CategoryService } from './../categories/category.service';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { AuthService } from './../security/auth.service';
 
 @NgModule({
   imports: [
@@ -37,6 +38,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     ErrorHandlerService,
     ConfirmationService,
     Title,
+    AuthService,
     { provide: LOCALE_ID, useValue: 'en-US' }
   ]
 })
