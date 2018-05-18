@@ -9,7 +9,7 @@
 
   <ul class="navbar-menu" [hidden]="!showingMenu">
 
-    <li class="navbar-user">Junior Miqueletti</li>
+    <li class="navbar-user">{{ authService.jwtPayload?.name }}</li>
 
     <li class="navbar-menuitem" routerLinkActive="activated">
       <a routerLink="/releases">Releases</a>
