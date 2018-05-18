@@ -11,7 +11,7 @@ export class ErrorHandlerService {
   handle(errorResponse: any) {
     let msg: string;
 
-    if (errorResponse === 'string') {
+    if (typeof errorResponse === 'string') {
       msg = errorResponse;
 
     } else if (errorResponse.status >= 400 && errorResponse.status <= 499) {

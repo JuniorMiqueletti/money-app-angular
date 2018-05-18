@@ -32,7 +32,15 @@ export class AuthService {
             this.storageToken(response.json().access_token);
           })
           .catch(response => {
-            console.log(response);
+            if (response.status === 400) {
+              const responseJson = response.json();
+
+              if (responseJson.error === 'invalid_grant') {
+                return Promise.reject('Invalid user and/or password.');
+              }
+            }
+
+            return Promise.reject(response);
           });
   }
 
