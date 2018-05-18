@@ -1,6 +1,10 @@
 import { Injectable, Component } from '@angular/core';
-import { Http, Headers, URLSearchParams } from '@angular/http';
+import { Http, URLSearchParams } from '@angular/http';
+
+import { AuthHttp } from 'angular2-jwt';
+
 import 'rxjs/add/operator/toPromise';
+
 import * as moment from 'moment';
 
 export class PeopleFilter {
@@ -14,14 +18,11 @@ export class PeopleService {
 
   peopleUrl = 'http://localhost:8080/person';
 
-  constructor(private http: Http) { }
+  constructor(private http: AuthHttp) { }
 
   search(filter: PeopleFilter): Promise<any> {
 
     const params = new URLSearchParams();
-
-    const headers = new Headers();
-    headers.append('Authorization', 'Basic YWRtaW5AZ21haWwuY29tOmFkbWlu');
 
     params.set('page', filter.page.toString());
     params.set('size', filter.pageSize.toString());
@@ -31,7 +32,7 @@ export class PeopleService {
     }
 
     return this.http.get(this.peopleUrl,
-      { headers, search: params })
+      { search: params })
       .toPromise()
       .then( response => {
         const responseJson = response.json();
@@ -48,20 +49,14 @@ export class PeopleService {
 
   delete(id: number): Promise<void> {
 
-    const headers = new Headers();
-    headers.append('Authorization', 'Basic YWRtaW5AZ21haWwuY29tOmFkbWlu');
-
-    return this.http.delete(`${this.peopleUrl}/${id}`,
-      { headers})
+    return this.http.delete(`${this.peopleUrl}/${id}`)
       .toPromise()
       .then(() => null );
   }
 
   findAll(): Promise<any> {
-    const headers = new Headers();
-    headers.append('Authorization', 'Basic YWRtaW5AZ21haWwuY29tOmFkbWlu');
 
-    return this.http.get(this.peopleUrl, { headers })
+    return this.http.get(this.peopleUrl)
       .toPromise()
       .then(response => response.json().content);
   }

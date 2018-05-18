@@ -1,7 +1,9 @@
 import { Injectable, Component } from '@angular/core';
-import { Http, Headers, URLSearchParams } from '@angular/http';
+import { URLSearchParams } from '@angular/http';
 
 import 'rxjs/add/operator/toPromise';
+import { AuthHttp } from 'angular2-jwt';
+
 import * as moment from 'moment';
 
 import { Release } from './../core/model/release.model';
@@ -19,14 +21,11 @@ export class ReleaseService {
 
   releasesUrl = 'http://localhost:8080/release';
 
-  constructor(private http: Http) { }
+  constructor(private http: AuthHttp) { }
 
   search(filter: ReleaseFilter): Promise<any> {
 
     const params = new URLSearchParams();
-
-    const headers = new Headers();
-    headers.append('Authorization', 'Basic YWRtaW5AZ21haWwuY29tOmFkbWlu');
 
     params.set('page', filter.page.toString());
     params.set('size', filter.pageSize.toString());
@@ -44,7 +43,7 @@ export class ReleaseService {
     }
 
     return this.http.get(`${this.releasesUrl}?summary`,
-      { headers, search: params })
+      { search: params })
       .toPromise()
       .then( response => {
         const responseJson = response.json();
@@ -61,23 +60,14 @@ export class ReleaseService {
 
   delete(id: number): Promise<void> {
 
-    const headers = new Headers();
-    headers.append('Authorization', 'Basic YWRtaW5AZ21haWwuY29tOmFkbWlu');
-
-    return this.http.delete(`${this.releasesUrl}/${id}`,
-      { headers })
+    return this.http.delete(`${this.releasesUrl}/${id}`)
       .toPromise()
       .then(() => null );
   }
 
   save(release: Release): Promise<Release> {
 
-    const headers = new Headers();
-    headers.append('Authorization', 'Basic YWRtaW5AZ21haWwuY29tOmFkbWlu');
-    headers.append('Content-Type', 'application/json');
-
-    return this.http.post(this.releasesUrl,
-      JSON.stringify(release), { headers })
+    return this.http.post(this.releasesUrl, JSON.stringify(release))
     .toPromise()
     .then(response => response.json());
 
@@ -85,12 +75,8 @@ export class ReleaseService {
 
   update(release: Release): Promise<Release> {
 
-    const headers = new Headers();
-    headers.append('Authorization', 'Basic YWRtaW5AZ21haWwuY29tOmFkbWlu');
-    headers.append('Content-Type', 'application/json');
-
     return this.http.put(`${this.releasesUrl}/${release.id}`,
-        JSON.stringify(release), { headers })
+        JSON.stringify(release))
       .toPromise()
       .then(response => {
         const releaseChanged = response.json() as Release;
@@ -103,12 +89,7 @@ export class ReleaseService {
 
   findById(id: number): Promise<Release> {
 
-    const headers = new Headers();
-    headers.append('Authorization', 'Basic YWRtaW5AZ21haWwuY29tOmFkbWlu');
-
-
-    return this.http.get(`${this.releasesUrl}/${id}`,
-        { headers})
+    return this.http.get(`${this.releasesUrl}/${id}`)
       .toPromise()
       .then(response => {
         const releaseResponse = response.json() as Release;
