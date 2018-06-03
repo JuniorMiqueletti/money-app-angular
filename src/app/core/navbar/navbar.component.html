@@ -11,11 +11,11 @@
 
     <li class="navbar-user">{{ authService.jwtPayload?.name }}</li>
 
-    <li class="navbar-menuitem" routerLinkActive="activated">
+    <li class="navbar-menuitem" routerLinkActive="activated" *ngIf="authService.hasPermission('ROLE_SEARCH_RELEASE')">
       <a routerLink="/releases">Releases</a>
     </li>
 
-    <li class="navbar-menuitem" routerLinkActive="activated">
+    <li class="navbar-menuitem" routerLinkActive="activated" *ngIf="authService.hasPermission('ROLE_SEARCH_PERSON')">
       <a routerLink="/people">People</a>
     </li>
 
