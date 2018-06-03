@@ -10,15 +10,20 @@ import { AuthHttp, AuthConfig } from 'angular2-jwt';
 
 import { LoginComponent } from './login/login.component';
 import { SecurityRoutingModule } from './security-routing.module';
+import { AuthService } from './auth.service';
+import { MoneyHttp } from './money-http';
 
-export function authHttpServiceFactory(http: Http, options: RequestOptions) {
+export function authHttpServiceFactory(
+  authService: AuthService,
+  http: Http,
+  options: RequestOptions) {
   const config = new AuthConfig({
     globalHeaders: [
       { 'Content-Type': 'application/json' }
     ]
   });
 
-  return new AuthHttp(config, http, options);
+  return new MoneyHttp(authService, config, http, options);
 }
 
 @NgModule({
@@ -37,7 +42,7 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     {
       provide: AuthHttp,
       useFactory: authHttpServiceFactory,
-      deps: [Http, RequestOptions]
+      deps: [AuthService, Http, RequestOptions]
     }
   ]
 })

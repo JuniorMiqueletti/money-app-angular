@@ -26,7 +26,7 @@ export class AuthService {
 
     const body = `username=${user}&password=${passworkd}&grant_type=password`;
 
-    return this.http.post(this.oauthTokenUrl, body, { headers })
+    return this.http.post(this.oauthTokenUrl, body, { headers, withCredentials: true })
           .toPromise()
           .then(response => {
             this.storageToken(response.json().access_token);
@@ -46,6 +46,33 @@ export class AuthService {
 
   hasPermission(permission: string) {
     return this.jwtPayload && this.jwtPayload.authorities.includes(permission);
+  }
+
+  isAcessTokenInvalid() {
+    const token = localStorage.getItem('token');
+
+    return !token || this.jwtHelper.isTokenExpired(token);
+  }
+
+  getNewAccessToken(): Promise<void> {
+    const body = 'grant_type=refresh_token';
+
+    const headers = new Headers;
+    headers.append('Authorization', 'Basic YW5ndWxhcjpAbmd1bEBy');
+    headers.append('Content-Type', 'application/x-www-form-urlencoded');
+
+    return this.http.post(this.oauthTokenUrl, body, { headers, withCredentials: true })
+      .toPromise()
+      .then(response => {
+        this.storageToken(response.json().access_token);
+
+        console.log('New access token generatade.');
+        return Promise.resolve(null);
+      })
+      .catch(response => {
+        console.log('Error to get new token.', response);
+        return Promise.resolve(null);
+      });
   }
 
   private storageToken(token: string) {
