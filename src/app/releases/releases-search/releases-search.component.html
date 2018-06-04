@@ -73,7 +73,8 @@
                   tooltipPosition="top" [routerLink]="['/releases', rel.id]"></button>
 
                 <button pButton icon="fa-trash" pTooltip="Exclude"
-                  tooltipPosition="top" (click)="confirmDelete(rel)"></button>
+                  tooltipPosition="top" (click)="confirmDelete(rel)"
+                  [disabled]="!authService.hasPermission('ROLE_DELETE_RELEASE')"></button>
 
               </ng-template>
         </p-column>

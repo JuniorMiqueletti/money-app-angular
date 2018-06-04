@@ -19,6 +19,10 @@ export class ErrorHandlerService {
         let errors;
         msg = 'Error during the processing the solicitation';
 
+        if (errorResponse.status === 403) {
+          msg = 'You are not permitted to execute this action.';
+        }
+
         try {
           errors = errorResponse.json();
 

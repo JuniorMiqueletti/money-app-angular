@@ -7,6 +7,7 @@ import { LazyLoadEvent } from 'primeng/components/common/lazyloadevent';
 
 import { ReleaseService, ReleaseFilter } from './../release.service';
 import { ErrorHandlerService } from './../../core/error-handler.service';
+import { AuthService } from './../../security/auth.service';
 
 @Component({
   selector: 'app-releases-search',
@@ -25,7 +26,8 @@ export class ReleasesSearchComponent implements OnInit {
     private toastyService: ToastyService,
     private confirmationService: ConfirmationService,
     private errorHandlerService: ErrorHandlerService,
-    private title: Title
+    private title: Title,
+    private authService: AuthService
   ) {}
 
   ngOnInit() {
