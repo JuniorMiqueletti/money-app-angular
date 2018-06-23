@@ -15,6 +15,7 @@ import { PeopleService } from '.././people/people.service';
 import { CategoryService } from './../categories/category.service';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { AuthService } from './../security/auth.service';
+import { UnauthorizedPageComponent } from './unauthorized-page/unauthorized-page.component';
 
 @NgModule({
   imports: [
@@ -26,6 +27,7 @@ import { AuthService } from './../security/auth.service';
   declarations: [
     NavbarComponent,
     PageNotFoundComponent,
+    UnauthorizedPageComponent,
   ],
   exports: [
     NavbarComponent,
