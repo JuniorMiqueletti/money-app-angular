@@ -1,3 +1,4 @@
+import { NotAuthenticatedError } from './../core/model/not-authenticated-error.model';
 import { Injectable } from '@angular/core';
 import { Http, RequestOptions, RequestOptionsArgs, Response } from '@angular/http';
 
@@ -51,7 +52,13 @@ export class MoneyHttp extends AuthHttp {
 
       const newAccessTokenCall = this.auth.getNewAccessToken()
         .then(() => {
+
+          if (this.auth.isAcessTokenInvalid()) {
+            throw new NotAuthenticatedError();
+          }
+
           return fn().toPromise();
+
         });
 
       return Observable.fromPromise(newAccessTokenCall);
