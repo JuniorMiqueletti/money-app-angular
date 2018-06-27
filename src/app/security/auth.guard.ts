@@ -20,7 +20,7 @@ export class AuthGuard implements CanActivate {
 
     const roles = next.data.roles;
 
-    if (this.authService.isAcessTokenInvalid) {
+    if (this.authService.isAcessTokenInvalid()) {
 
       console.log('Navigation with invalid token. Getting new token...');
       return this.authService.getNewAccessToken()
