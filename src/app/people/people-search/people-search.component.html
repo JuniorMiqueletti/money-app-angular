@@ -24,10 +24,40 @@
   <div class="ui-g">
     <div class="ui-g-12">
 
-      <app-people-grid [people]="people" [pageSize]="filter.pageSize"
-        [totalRegisters]="totalRegisters" (changePageEmitter)="search($event)"
-        (idDeleteEmitter)="confirmDelete($event)">
-      </app-people-grid>
+      <p-dataTable [value]="people"
+        [paginator]="true" [rows]="filter.pageSize"
+        [responsive]="true" emptyMessage="No register found."
+        [lazy]="true" [totalRecords]="totalRegisters"
+        (onLazyLoad)="onChangePage($event)" #table>
+
+        <p-column field="name" header="Name"></p-column>
+
+        <p-column field="address.city" header="City"></p-column>
+
+        <p-column field="address.state" header="State" styleClass="col-date"></p-column>
+
+        <p-column field="active" header="Status"styleClass="col-date">
+
+          <ng-template let-people="rowData" pTemplate="body">
+            <a href="javascript:;" [pTooltip]="people.active ? 'Inactivate' : 'Activate'"
+                tooltipPosition="top">
+              {{ people.active ? 'Active' : 'Inactive' }}
+            </a>
+          </ng-template>
+        </p-column>
+
+        <p-column styleClass="col-actions">
+          <ng-template let-people="rowData" pTemplate="body">
+
+            <button pButton icon="fa-pencil" pTooltip="Edit" tooltipPosition="top"></button>
+
+            <button pButton icon="fa-trash" pTooltip="Exclude"
+              tooltipPosition="top" (click)="confirmDelete(people)"></button>
+
+          </ng-template>
+        </p-column>
+
+      </p-dataTable>
 
     </div>
   </div>

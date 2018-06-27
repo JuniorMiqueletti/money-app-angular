@@ -10,7 +10,6 @@ import { DataTableModule } from 'primeng/datatable';
 import { TooltipModule } from 'primeng/tooltip';
 
 import { PeopleRegisterComponent } from './people-register/people-register.component';
-import { PeopleGridComponent } from './people-grid/people-grid.component';
 import { PeopleSearchComponent } from './people-search/people-search.component';
 import { SharedModule } from '../shared/shared.module';
 import { PeopleRoutingModule } from './people-routing.module';
@@ -32,8 +31,7 @@ import { PeopleRoutingModule } from './people-routing.module';
   ],
   declarations: [
     PeopleRegisterComponent,
-    PeopleSearchComponent,
-    PeopleGridComponent
+    PeopleSearchComponent
   ],
   exports: []
 })
