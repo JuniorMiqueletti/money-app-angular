@@ -13,6 +13,7 @@ import { SecurityRoutingModule } from './security-routing.module';
 import { AuthService } from './auth.service';
 import { MoneyHttp } from './money-http';
 import { AuthGuard } from './auth.guard';
+import { LogoutService } from './logout.service';
 
 export function authHttpServiceFactory(
   authService: AuthService,
@@ -45,7 +46,8 @@ export function authHttpServiceFactory(
       useFactory: authHttpServiceFactory,
       deps: [AuthService, Http, RequestOptions]
     },
-    AuthGuard
+    AuthGuard,
+    LogoutService
   ]
 })
 export class SecurityModule { }
