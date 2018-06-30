@@ -9,13 +9,13 @@
       <div class="ui-g-12 ui-md-12 ui-fluid">
         <label>Name</label>
         <input pInputText type="text" name="name"
-        ngModel #name="ngModel" required minlength="5" (change)="showLog(name)">
+          ngModel #name="ngModel" required minlength="5">
 
         <app-message [control]="name" error="required"
-        text="Inform the name"></app-message>
+          text="Inform the name"></app-message>
 
         <app-message [control]="name" error="minlength"
-        text="{{ name.errors?.minlength?.requiredLength }} characters minimum"></app-message>
+          text="{{ name.errors?.minlength?.requiredLength }} characters minimum"></app-message>
 
         </div>
 

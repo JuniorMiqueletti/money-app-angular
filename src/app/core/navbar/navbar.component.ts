@@ -12,8 +12,10 @@ import { LogoutService } from './../../security/logout.service';
 })
 export class NavbarComponent implements OnInit {
 
+  showingMenu = false;
+
   constructor(
-    private authService: AuthService,
+    public authService: AuthService,
     private logoutService: LogoutService,
     private errorHandler: ErrorHandlerService,
     private router: Router
