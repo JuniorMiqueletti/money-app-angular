@@ -4,12 +4,16 @@ import { Http } from '@angular/http';
 import { AuthHttp } from 'angular2-jwt';
 import 'rxjs/add/operator/toPromise';
 
+import { environment } from './../../environments/environment';
+
 @Injectable()
 export class CategoryService {
 
-  categoryUrl = 'http://localhost:8080/category';
+  categoryUrl: string;
 
-  constructor( private http: AuthHttp ) { }
+  constructor( private http: AuthHttp ) {
+    this.categoryUrl = `${environment.apiUrl}/category`;
+  }
 
   findAll(): Promise<any> {
 

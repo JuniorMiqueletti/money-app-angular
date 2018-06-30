@@ -3,10 +3,10 @@ import { URLSearchParams } from '@angular/http';
 
 import 'rxjs/add/operator/toPromise';
 import { AuthHttp } from 'angular2-jwt';
-
 import * as moment from 'moment';
 
 import { Release } from './../core/model/release.model';
+import { environment } from '../../environments/environment';
 
 export class ReleaseFilter {
   description: string;
@@ -19,9 +19,11 @@ export class ReleaseFilter {
 @Injectable()
 export class ReleaseService {
 
-  releasesUrl = 'http://localhost:8080/release';
+  releasesUrl: string;
 
-  constructor(private http: AuthHttp) { }
+  constructor(private http: AuthHttp) {
+    this.releasesUrl = `${environment.apiUrl}/release`;
+  }
 
   search(filter: ReleaseFilter): Promise<any> {
 

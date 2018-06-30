@@ -1,11 +1,11 @@
 import { Injectable, Component } from '@angular/core';
 import { Http, URLSearchParams } from '@angular/http';
-
 import { AuthHttp } from 'angular2-jwt';
 
 import 'rxjs/add/operator/toPromise';
-
 import * as moment from 'moment';
+
+import { environment } from '../../environments/environment';
 
 export class PeopleFilter {
   name: string;
@@ -16,9 +16,11 @@ export class PeopleFilter {
 @Injectable()
 export class PeopleService {
 
-  peopleUrl = 'http://localhost:8080/person';
+  peopleUrl: string;
 
-  constructor(private http: AuthHttp) { }
+  constructor(private http: AuthHttp) {
+    this.peopleUrl = `${environment.apiUrl}/person`;
+  }
 
   search(filter: PeopleFilter): Promise<any> {
 
