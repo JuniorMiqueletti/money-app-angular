@@ -14,7 +14,7 @@ export class LogoutService {
     private http: AuthHttp,
     private authService: AuthService
   ) {
-    this.tokensRevokeURL = `${environment.apiUrl}/tokens/revoke`; 
+    this.tokensRevokeURL = `${environment.apiUrl}/tokens/revoke`;
   }
 
   logout() {
