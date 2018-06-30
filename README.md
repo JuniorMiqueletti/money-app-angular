@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/JuniorMiqueletti/money-app-angular.svg?branch=master)](https://travis-ci.org/JuniorMiqueletti/money-app-angular)
+
 # money-app-angular
 
 This project was generated with [Angular CLI]
