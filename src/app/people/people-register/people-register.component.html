@@ -1,5 +1,5 @@
 <div class="container">
-  <form #fNgForm="ngForm" autocomplete="off">
+  <form #fNgForm="ngForm" autocomplete="off" (ngSubmit)="save(fNgForm)">
     <div class="ui-g">
 
       <div class="ui-g-12">
@@ -9,7 +9,8 @@
       <div class="ui-g-12 ui-md-12 ui-fluid">
         <label>Name</label>
         <input pInputText type="text" name="name"
-          ngModel #name="ngModel" required minlength="5">
+          #name="ngModel" required minlength="5"
+          [(ngModel)]="person.name">
 
         <app-message [control]="name" error="required"
           text="Inform the name"></app-message>
@@ -20,33 +21,47 @@
         </div>
 
         <div class="ui-g-12 ui-md-9 ui-fluid">
+
           <label>Public place</label>
+
           <input pInputText type="text" name="publicPlace"
-          ngModel #publicPlace="ngModel" required>
+            #publicPlace="ngModel" required
+            [(ngModel)]="person.address.public_place">
 
           <app-message [control]="publicPlace" error="required"
           text="Inform the Public place"></app-message>
+
       </div>
 
       <div class="ui-g-12 ui-md-3 ui-fluid">
+
         <label>Number</label>
+
         <input pInputText type="text" name="number"
-        ngModel #number="ngModel"required>
+          #number="ngModel"required
+          [(ngModel)]="person.address.number">
 
         <app-message [control]="number" error="required"
         text="Inform the number"></app-message>
       </div>
 
       <div class="ui-g-12 ui-md-8 ui-fluid">
+
         <label>Complement</label>
-        <input pInputText type="text">
+
+        <input pInputText type="text" name="complement"
+          [(ngModel)]="person.address.complement">
+
       </div>
 
       <div class="ui-g-12 ui-md-4 ui-fluid">
+
         <label>Zip code</label>
+
         <p-inputMask name="zipcode"
           mask="99.999-999"
-          ngModel #zipcode="ngModel" required>
+          #zipcode="ngModel" required
+          [(ngModel)]="person.address.zip_code">
         </p-inputMask>
 
         <app-message [control]="zipcode" error="required"
@@ -54,27 +69,42 @@
       </div>
 
       <div class="ui-g-12 ui-md-7 ui-fluid">
+
         <label>City</label>
+
         <input pInputText type="text" name="city"
-        ngModel #city="ngModel" required>
+          #city="ngModel" required
+          [(ngModel)]="person.address.city">
 
         <app-message [control]="city" error="required"
-        text="Inform the city"></app-message>
+          text="Inform the city"></app-message>
+
       </div>
 
       <div class="ui-g-12 ui-md-5 ui-fluid">
+
         <label>State</label>
+
         <input pInputText type="text" name="state"
-          ngModel #state="ngModel" required>
+          #state="ngModel" required
+          [(ngModel)]="person.address.state">
 
         <app-message [control]="state" error="required"
         text="Inform the State"></app-message>
       </div>
 
       <div class="ui-g-12">
-        <button pButton type="submit" label="Save" [disabled]="fNgForm.invalid"></button>
-        <button pButton type="submit" label="New" class="ui-button-info"></button>
+
+        <button pButton type="submit" label="Save"
+          [disabled]="fNgForm.invalid">
+        </button>
+
+        <button pButton type="button" label="New"
+          class="ui-button-info" (click)="new(fNgForm)">
+        </button>
+
         <a routerLink="/people">Return to search</a>
+
       </div>
 
     </div>
