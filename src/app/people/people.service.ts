@@ -1,11 +1,10 @@
-import { Person } from './../core/model/person.model';
 import { Injectable, Component } from '@angular/core';
-import { Http, URLSearchParams } from '@angular/http';
-import { AuthHttp } from 'angular2-jwt';
+import { HttpParams } from '@angular/common/http';
 
 import 'rxjs/add/operator/toPromise';
-import * as moment from 'moment';
 
+import { MoneyHttp } from './../security/money-http';
+import { Person } from './../core/model/person.model';
 import { environment } from '../../environments/environment';
 
 export class PeopleFilter {
@@ -19,31 +18,32 @@ export class PeopleService {
 
   peopleUrl: string;
 
-  constructor(private http: AuthHttp) {
+  constructor(private http: MoneyHttp) {
     this.peopleUrl = `${environment.apiUrl}/person`;
   }
 
   search(filter: PeopleFilter): Promise<any> {
 
-    const params = new URLSearchParams();
-
-    params.set('page', filter.page.toString());
-    params.set('size', filter.pageSize.toString());
+    let params = new HttpParams({
+      fromObject: {
+        page: filter.page.toString(),
+        size: filter.pageSize.toString()
+      }
+    });
 
     if (filter.name) {
-      params.set('name', filter.name);
+      params = params.append('name', filter.name);
     }
 
-    return this.http.get(this.peopleUrl,
-      { search: params })
+    return this.http.get<any>(this.peopleUrl,
+      { params })
       .toPromise()
       .then( response => {
-        const responseJson = response.json();
-        const people = responseJson.content;
+        const people = response.content;
 
         const result = {
           people: people,
-          total: responseJson.totalElements
+          total: response.totalElements
         };
 
         return result;
@@ -57,37 +57,23 @@ export class PeopleService {
       .then(() => null );
   }
 
-  findAll(): Promise<any> {
-
-    return this.http.get(this.peopleUrl)
-      .toPromise()
-      .then(response => response.json().content);
+  findAll(): Promise<Person[]> {
+    return this.http.get<Person[]>(this.peopleUrl)
+      .toPromise();
   }
 
   findById(id: number): Promise<Person> {
 
-    return this.http.get(`${this.peopleUrl}/${id}`)
-      .toPromise()
-      .then(response => {
-        const personResponse = response.json() as Person;
-
-        return personResponse;
-      });
+    return this.http.get<Person>(`${this.peopleUrl}/${id}`)
+      .toPromise();
   }
 
   update(person: Person): Promise<Person> {
-    return this.http.put(`${this.peopleUrl}/${person.id}`,
-        JSON.stringify(person))
-      .toPromise()
-      .then(response => {
-        const personChanged = response.json() as Person;
-
-        return personChanged;
-      });
+    return this.http.put<Person>(`${this.peopleUrl}/${person.id}`, person)
+      .toPromise();
   }
   save(person: Person): Promise<Person> {
-    return this.http.post(this.peopleUrl, JSON.stringify(person))
-      .toPromise()
-      .then(response => response.json());
+    return this.http.post<Person>(this.peopleUrl, person)
+      .toPromise();
   }
 }

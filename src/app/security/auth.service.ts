@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Http, Headers } from '@angular/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
-import { JwtHelper } from 'angular2-jwt';
+import { JwtHelperService } from '@auth0/angular-jwt';
 import 'rxjs/add/operator/toPromise';
 
 import { environment } from '../../environments/environment';
@@ -13,8 +13,8 @@ export class AuthService {
   jwtPayload: any;
 
   constructor(
-    private http: Http,
-    private jwtHelper: JwtHelper
+    private http: HttpClient,
+    private jwtHelper: JwtHelperService
   ) {
     this.loadToken();
     this.oauthTokenUrl = `${environment.apiUrl}/oauth/token`;
@@ -22,22 +22,20 @@ export class AuthService {
 
   login(user: string, passworkd: string): Promise<void> {
 
-    const headers = new Headers;
-    headers.append('Authorization', 'Basic YW5ndWxhcjpAbmd1bEBy');
-    headers.append('Content-Type', 'application/x-www-form-urlencoded');
+    const headers = new HttpHeaders()
+      .append('Authorization', 'Basic YW5ndWxhcjpAbmd1bEBy')
+      .append('Content-Type', 'application/x-www-form-urlencoded');
 
     const body = `username=${user}&password=${passworkd}&grant_type=password`;
 
-    return this.http.post(this.oauthTokenUrl, body, { headers, withCredentials: true })
+    return this.http.post<any>(this.oauthTokenUrl, body, { headers, withCredentials: true })
           .toPromise()
           .then(response => {
-            this.storageToken(response.json().access_token);
+            this.storageToken(response.access_token);
           })
           .catch(response => {
             if (response.status === 400) {
-              const responseJson = response.json();
-
-              if (responseJson.error === 'invalid_grant') {
+              if (response.error === 'invalid_grant') {
                 return Promise.reject('Invalid user and/or password.');
               }
             }
@@ -74,14 +72,14 @@ export class AuthService {
   getNewAccessToken(): Promise<void> {
     const body = 'grant_type=refresh_token';
 
-    const headers = new Headers;
-    headers.append('Authorization', 'Basic YW5ndWxhcjpAbmd1bEBy');
-    headers.append('Content-Type', 'application/x-www-form-urlencoded');
+    const headers = new HttpHeaders()
+      .append('Authorization', 'Basic YW5ndWxhcjpAbmd1bEBy')
+      .append('Content-Type', 'application/x-www-form-urlencoded');
 
-    return this.http.post(this.oauthTokenUrl, body, { headers, withCredentials: true })
+    return this.http.post<any>(this.oauthTokenUrl, body, { headers, withCredentials: true })
       .toPromise()
       .then(response => {
-        this.storageToken(response.json().access_token);
+        this.storageToken(response.access_token);
 
         console.log('New access token generatade.');
         return Promise.resolve(null);

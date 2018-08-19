@@ -1,13 +1,15 @@
 import { NgModule, LOCALE_ID } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
 import { Title } from '@angular/platform-browser';
 
 import { ToastyModule } from 'ng2-toasty';
 import { ConfirmDialogModule } from 'primeng/components/confirmdialog/confirmdialog';
 import { ConfirmationService } from 'primeng/components/common/confirmationservice';
-import { JwtHelper } from 'angular2-jwt';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
+import { MoneyHttp } from './../security/money-http';
 import { NavbarComponent } from './navbar/navbar.component';
 import { ErrorHandlerService } from './error-handler.service';
 import { ReleaseService } from '.././releases/release.service';
@@ -20,6 +22,7 @@ import { UnauthorizedPageComponent } from './unauthorized-page/unauthorized-page
 @NgModule({
   imports: [
     CommonModule,
+    HttpClientModule,
     RouterModule,
     ToastyModule.forRoot(),
     ConfirmDialogModule
@@ -42,7 +45,8 @@ import { UnauthorizedPageComponent } from './unauthorized-page/unauthorized-page
     ConfirmationService,
     Title,
     AuthService,
-    JwtHelper,
+    JwtHelperService,
+    MoneyHttp,
     { provide: LOCALE_ID, useValue: 'en-US' }
   ]
 })

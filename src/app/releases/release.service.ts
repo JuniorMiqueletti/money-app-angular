@@ -1,10 +1,10 @@
 import { Injectable, Component } from '@angular/core';
-import { URLSearchParams } from '@angular/http';
+import { HttpParams } from '@angular/common/http';
 
 import 'rxjs/add/operator/toPromise';
-import { AuthHttp } from 'angular2-jwt';
 import * as moment from 'moment';
 
+import { MoneyHttp } from './../security/money-http';
 import { Release } from './../core/model/release.model';
 import { environment } from '../../environments/environment';
 
@@ -21,39 +21,40 @@ export class ReleaseService {
 
   releasesUrl: string;
 
-  constructor(private http: AuthHttp) {
+  constructor(private http: MoneyHttp) {
     this.releasesUrl = `${environment.apiUrl}/release`;
   }
 
   search(filter: ReleaseFilter): Promise<any> {
 
-    const params = new URLSearchParams();
-
-    params.set('page', filter.page.toString());
-    params.set('size', filter.pageSize.toString());
+    let params = new HttpParams({
+      fromObject: {
+        page: filter.page.toString(),
+        size: filter.pageSize.toString()
+      }
+    });
 
     if (filter.description) {
-      params.set('description', filter.description);
+      params = params.append('description', filter.description);
     }
     if (filter.dueDateFrom) {
-      params.set('dueDateFrom',
+      params = params.append('dueDateFrom',
         moment(filter.dueDateFrom).format('YYYY-MM-DD'));
     }
     if (filter.dueDateUntil) {
-      params.set('dueDateUntil',
+      params = params.append('dueDateUntil',
         moment(filter.dueDateUntil).format('YYYY-MM-DD'));
     }
 
-    return this.http.get(`${this.releasesUrl}?summary`,
-      { search: params })
+    return this.http.get<any>(`${this.releasesUrl}?summary`,
+      { params })
       .toPromise()
       .then( response => {
-        const responseJson = response.json();
-        const releases = responseJson.content;
+        const releases = response.content;
 
         const result = {
           releases: releases,
-          total: responseJson.totalElements
+          total: response.totalElements
         };
 
         return result;
@@ -69,19 +70,16 @@ export class ReleaseService {
 
   save(release: Release): Promise<Release> {
 
-    return this.http.post(this.releasesUrl, JSON.stringify(release))
-    .toPromise()
-    .then(response => response.json());
-
+    return this.http.post<Release>(this.releasesUrl, release)
+      .toPromise();
   }
 
   update(release: Release): Promise<Release> {
 
-    return this.http.put(`${this.releasesUrl}/${release.id}`,
-        JSON.stringify(release))
+    return this.http.put<Release>(`${this.releasesUrl}/${release.id}`, release)
       .toPromise()
       .then(response => {
-        const releaseChanged = response.json() as Release;
+        const releaseChanged = response;
 
         this.convertString2Date([releaseChanged]);
 
@@ -91,10 +89,10 @@ export class ReleaseService {
 
   findById(id: number): Promise<Release> {
 
-    return this.http.get(`${this.releasesUrl}/${id}`)
+    return this.http.get<Release>(`${this.releasesUrl}/${id}`)
       .toPromise()
       .then(response => {
-        const releaseResponse = response.json() as Release;
+        const releaseResponse = response;
 
         this.convertString2Date([releaseResponse]);
 

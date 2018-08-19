@@ -1,52 +1,50 @@
-import { NotAuthenticatedError } from './../core/model/not-authenticated-error.model';
 import { Injectable } from '@angular/core';
-import { Http, RequestOptions, RequestOptionsArgs, Response } from '@angular/http';
+import { HttpClient, HttpHandler } from '@angular/common/http';
 
-import { AuthConfig, AuthHttp, JwtHelper } from 'angular2-jwt';
-import { Observable } from 'rxjs/Observable';
+import { Observable, from as observableFromPromise } from 'rxjs';
 
 import { AuthService } from './auth.service';
+import { NotAuthenticatedError } from './../core/model/not-authenticated-error.model';
 
 @Injectable()
-export class MoneyHttp extends AuthHttp {
+export class MoneyHttp extends HttpClient {
 
   constructor(
     private auth: AuthService,
-    options: AuthConfig,
-    http: Http, defOpts?: RequestOptions
+    private httpHandler: HttpHandler
   ) {
-    super(options, http, defOpts);
+    super(httpHandler);
   }
 
-  public delete(url: string, options?: RequestOptionsArgs): Observable<Response> {
-    return this.doRequest(() => super.delete(url, options));
+  public delete<T>(url: string, options?: any): Observable<T> {
+    return this.doRequest<T>(() => super.delete<T>(url, options));
   }
 
-  public patch(url: string, body: any, options?: RequestOptionsArgs): Observable<Response> {
-    return this.doRequest(() => super.patch(url, options));
+  public patch<T>(url: string, body: any, options?: any): Observable<T> {
+    return this.doRequest<T>(() => super.patch<T>(url, options));
   }
 
-  public head(url: string, options?: RequestOptionsArgs): Observable<Response> {
-    return this.doRequest(() => super.head(url, options));
+  public head<T>(url: string, options?: any): Observable<T> {
+    return this.doRequest<T>(() => super.head<T>(url, options));
   }
 
-  public options(url: string, options?: RequestOptionsArgs): Observable<Response> {
-    return this.doRequest(() => super.options(url, options));
+  public options<T>(url: string, options?: any): Observable<T> {
+    return this.doRequest<T>(() => super.options<T>(url, options));
   }
 
-  public get(url: string, options?: RequestOptionsArgs): Observable<Response> {
-    return this.doRequest(() => super.get(url, options));
+  public get<T>(url: string, options?: any): Observable<T> {
+    return this.doRequest<T>(() => super.get<T>(url, options));
   }
 
-  public post(url: string, body: any, options?: RequestOptionsArgs): Observable<Response> {
-    return this.doRequest(() => super.post(url, body, options));
+  public post<T>(url: string, body: any, options?: any): Observable<T> {
+    return this.doRequest<T>(() => super.post<T>(url, body, options));
   }
 
-  public put(url: string, body: any, options?: RequestOptionsArgs): Observable<Response> {
-    return this.doRequest(() => super.put(url, body, options));
+  public put<T>(url: string, body: any, options?: any): Observable<T> {
+    return this.doRequest<T>(() => super.put<T>(url, body, options));
   }
 
-  private doRequest(fn: Function): Observable<Response> {
+  private doRequest<T>(fn: Function): Observable<T> {
     if (this.auth.isAcessTokenInvalid()) {
       console.log('HTTP request with access token invalid. Getting new token...');
 
@@ -61,7 +59,7 @@ export class MoneyHttp extends AuthHttp {
 
         });
 
-      return Observable.fromPromise(newAccessTokenCall);
+      return observableFromPromise(newAccessTokenCall);
     } else {
       return fn();
     }
