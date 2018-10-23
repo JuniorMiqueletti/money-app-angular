@@ -49,10 +49,10 @@
         <p-column styleClass="col-actions">
           <ng-template let-people="rowData" pTemplate="body">
 
-            <button pButton icon="fa-pencil" pTooltip="Edit"
+            <button pButton icon="fa fa-pencil" pTooltip="Edit"
               tooltipPosition="top" [routerLink]="['/people', people.id]"></button>
 
-            <button pButton icon="fa-trash" pTooltip="Exclude"
+            <button pButton icon="fa fa-trash" pTooltip="Exclude"
               tooltipPosition="top" (click)="confirmDelete(people)"></button>
 
           </ng-template>
