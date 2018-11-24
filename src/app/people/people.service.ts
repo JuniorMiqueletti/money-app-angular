@@ -19,7 +19,7 @@ export class PeopleService {
   peopleUrl: string;
 
   constructor(private http: MoneyHttp) {
-    this.peopleUrl = `${environment.apiUrl}/person`;
+    this.peopleUrl = `${environment.apiUrl}/api/v1/person`;
   }
 
   search(filter: PeopleFilter): Promise<any> {

@@ -11,7 +11,7 @@ export class CategoryService {
   categoryUrl: string;
 
   constructor( private http: MoneyHttp ) {
-    this.categoryUrl = `${environment.apiUrl}/category`;
+    this.categoryUrl = `${environment.apiUrl}/api/v1/category`;
   }
 
   findAll(): Promise<any> {

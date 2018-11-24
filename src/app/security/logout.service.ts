@@ -13,7 +13,7 @@ export class LogoutService {
     private http: MoneyHttp,
     private authService: AuthService
   ) {
-    this.tokensRevokeURL = `${environment.apiUrl}/tokens/revoke`;
+    this.tokensRevokeURL = `${environment.apiUrl}/api/v1/tokens/revoke`;
   }
 
   logout() {

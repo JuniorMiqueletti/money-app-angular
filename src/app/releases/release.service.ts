@@ -22,7 +22,7 @@ export class ReleaseService {
   releasesUrl: string;
 
   constructor(private http: MoneyHttp) {
-    this.releasesUrl = `${environment.apiUrl}/release`;
+    this.releasesUrl = `${environment.apiUrl}/api/v1/release`;
   }
 
   search(filter: ReleaseFilter): Promise<any> {
