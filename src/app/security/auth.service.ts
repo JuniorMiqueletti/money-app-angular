@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { JwtHelperService } from '@auth0/angular-jwt';
 import 'rxjs/add/operator/toPromise';
+import { MessageService } from 'primeng/api';
 
 import { environment } from '../../environments/environment';
 
@@ -14,7 +15,8 @@ export class AuthService {
 
   constructor(
     private http: HttpClient,
-    private jwtHelper: JwtHelperService
+    private jwtHelper: JwtHelperService,
+    private messageService: MessageService
   ) {
     this.loadToken();
     this.oauthTokenUrl = `${environment.apiUrl}/oauth/token`;

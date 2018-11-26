@@ -4,9 +4,10 @@ import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { Title } from '@angular/platform-browser';
 
-import { ToastyModule } from 'ng2-toasty';
 import { ConfirmDialogModule } from 'primeng/components/confirmdialog/confirmdialog';
 import { ConfirmationService } from 'primeng/components/common/confirmationservice';
+import { ToastModule } from 'primeng/toast';
+import { MessageService } from 'primeng/api';
 import { JwtHelperService } from '@auth0/angular-jwt';
 
 import { MoneyHttp } from './../security/money-http';
@@ -19,13 +20,14 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { AuthService } from './../security/auth.service';
 import { UnauthorizedPageComponent } from './unauthorized-page/unauthorized-page.component';
 
+
 @NgModule({
   imports: [
     CommonModule,
     HttpClientModule,
     RouterModule,
-    ToastyModule.forRoot(),
-    ConfirmDialogModule
+    ConfirmDialogModule,
+    ToastModule
   ],
   declarations: [
     NavbarComponent,
@@ -34,10 +36,11 @@ import { UnauthorizedPageComponent } from './unauthorized-page/unauthorized-page
   ],
   exports: [
     NavbarComponent,
-    ToastyModule,
-    ConfirmDialogModule
+    ConfirmDialogModule,
+    ToastModule
   ],
   providers: [
+    MessageService,
     CategoryService,
     ReleaseService,
     PeopleService,

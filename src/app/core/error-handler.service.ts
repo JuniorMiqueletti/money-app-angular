@@ -2,7 +2,7 @@ import { Router } from '@angular/router';
 import { Injectable } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 
-import { ToastyService } from 'ng2-toasty';
+import { MessageService } from 'primeng/api';
 
 import { NotAuthenticatedError } from './model/not-authenticated-error.model';
 
@@ -10,8 +10,8 @@ import { NotAuthenticatedError } from './model/not-authenticated-error.model';
 export class ErrorHandlerService {
 
   constructor(
-    private toasty: ToastyService,
-    private router: Router
+    private router: Router,
+    private messageService: MessageService
   ) { }
 
   handle(errorResponse: any) {
@@ -46,8 +46,7 @@ export class ErrorHandlerService {
       console.log(msg, errorResponse);
 
     }
-
-    this.toasty.error(msg);
+    this.messageService.add({severity: 'error', summary: 'Error', detail: msg});
   }
 
 }

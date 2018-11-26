@@ -1,9 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 
-import { ToastyService } from 'ng2-toasty';
 import { ConfirmationService } from 'primeng/components/common/confirmationservice';
 import { LazyLoadEvent } from 'primeng/components/common/lazyloadevent';
+import { MessageService } from 'primeng/api';
 
 import { ReleaseService, ReleaseFilter } from './../release.service';
 import { ErrorHandlerService } from './../../core/error-handler.service';
@@ -23,11 +23,11 @@ export class ReleasesSearchComponent implements OnInit {
 
   constructor(
     private releaseService: ReleaseService,
-    private toastyService: ToastyService,
     private confirmationService: ConfirmationService,
     private errorHandlerService: ErrorHandlerService,
     private title: Title,
-    private authService: AuthService
+    private authService: AuthService,
+    private messageService: MessageService
   ) {}
 
   ngOnInit() {
@@ -65,8 +65,7 @@ export class ReleasesSearchComponent implements OnInit {
       } else {
         this.grid.first = 0;
       }
-
-      this.toastyService.success('Deleted successfully!');
+      this.messageService.add({severity: 'success', summary: 'Success', detail: 'Deleted successfully!'});
     })
     .catch(error => this.errorHandlerService.handle(error));
   }
@@ -75,5 +74,4 @@ export class ReleasesSearchComponent implements OnInit {
     const pageNumber = event.first / event.rows;
     this.search(pageNumber);
   }
-
 }

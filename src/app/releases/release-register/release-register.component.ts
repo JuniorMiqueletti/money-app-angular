@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 
-import { ToastyService } from 'ng2-toasty';
+import { MessageService } from 'primeng/api';
 
 import { CategoryService } from './../../categories/category.service';
 import { ErrorHandlerService } from './../../core/error-handler.service';
@@ -32,7 +32,7 @@ export class ReleaseRegisterComponent implements OnInit {
     private categoryService: CategoryService,
     private peopleService: PeopleService,
     private releaseService: ReleaseService,
-    private toastyService: ToastyService,
+    private messageService: MessageService,
     private errorHandlerService: ErrorHandlerService,
     private route: ActivatedRoute,
     private router: Router,
@@ -67,7 +67,7 @@ export class ReleaseRegisterComponent implements OnInit {
 
     this.releaseService.save(this.release)
       .then(releaseAdded => {
-        this.toastyService.success('Release created successful!');
+        this.messageService.add({severity: 'success', summary: 'Success', detail: 'Release created successful!'});
         this.router.navigate(['/releases', releaseAdded.id]);
       })
       .catch(error => this.errorHandlerService.handle(error));
@@ -79,7 +79,7 @@ export class ReleaseRegisterComponent implements OnInit {
       .then(release => {
         this.release = release;
 
-        this.toastyService.success('Release edited successful!');
+        this.messageService.add({severity: 'success', summary: 'Success', detail: 'Release edited successful!'});
         this.setTitleUpdate();
       })
       .catch(error => this.errorHandlerService.handle(error));
@@ -128,5 +128,4 @@ export class ReleaseRegisterComponent implements OnInit {
   private setTitleUpdate() {
     this.title.setTitle(`Updating release: ${this.release.description}`);
   }
-
 }

@@ -1,9 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 
-import { ToastyService } from 'ng2-toasty';
 import { ConfirmationService } from 'primeng/components/common/confirmationservice';
 import { LazyLoadEvent } from 'primeng/components/common/lazyloadevent';
+import { MessageService } from 'primeng/api';
 
 import { PeopleService, PeopleFilter } from './../people.service';
 import { ErrorHandlerService } from './../../core/error-handler.service';
@@ -23,7 +23,7 @@ export class PeopleSearchComponent implements OnInit {
 
   constructor(
     private peopleService: PeopleService,
-    private toastyService: ToastyService,
+    private messageService: MessageService,
     private confirmationService: ConfirmationService,
     private errorHandlerService: ErrorHandlerService,
     private title: Title,
@@ -66,8 +66,7 @@ export class PeopleSearchComponent implements OnInit {
         } else {
           this.grid.first = 0;
         }
-
-        this.toastyService.success('Deleted successfully!');
+        this.messageService.add({severity: 'success', summary: 'Success', detail: 'Deleted successfully!'});
       })
       .catch(error => this.errorHandlerService.handle(error));
   }
